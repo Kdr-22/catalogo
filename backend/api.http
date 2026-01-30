@@ -17,8 +17,8 @@ Content-Type: application/json
 }
 
 ###
-### Actualizar un producto (Cambia el 1 por un ID real)
-PUT {{url}}/1
+### Actualizar un producto (Cambia el ID por un ID real)
+PUT {{url}}/3
 Content-Type: application/json
 
 {
@@ -30,4 +30,4 @@ Content-Type: application/json
 
 ###
 ### Eliminar un producto
-DELETE {{url}}/1
+DELETE {{url}}/4
