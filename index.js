@@ -1,16 +1,7 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const productRoutes = require('./routes/products');
-const morgan = require('morgan')
+const app = require('./app');
 
-const app = express();
-app.use(morgan('dev'));
-app.use(bodyParser.json());
+const PORT = process.env.PORT || 3000;
 
-
-app.use('/api/products', productRoutes);
-
-const PORT = 3000;
 app.listen(PORT, () => {
-    console.log(`Servidor corriendo en http://localhost:${PORT}`);
+    console.log(`🚀 Servidor en http://localhost:${PORT}`);
 });
