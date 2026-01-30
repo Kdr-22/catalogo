@@ -1,0 +1,33 @@
+### Variables
+@url = http://localhost:3000/api/products
+
+### Obtener todos los productos
+GET {{url}}
+
+###
+### Crear un nuevo producto
+POST {{url}}
+Content-Type: application/json
+
+{
+    "name": "Monitor 4K",
+    "description": "Pantalla de 27 pulgadas Ultra HD",
+    "price": 350.00,
+    "stock": 10
+}
+
+###
+### Actualizar un producto (Cambia el 1 por un ID real)
+PUT {{url}}/1
+Content-Type: application/json
+
+{
+    "name": "Monitor 4K Pro",
+    "description": "Edición mejorada",
+    "price": 399.99,
+    "stock": 5
+}
+
+###
+### Eliminar un producto
+DELETE {{url}}/1
