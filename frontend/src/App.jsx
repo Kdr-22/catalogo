@@ -1,33 +1,38 @@
 import { useEffect, useState } from 'react'
+import { ProductCard } from './components/ProductCard'
+import './App.css'
 
 function App() {
   const [products, setProducts] = useState([])
 
-  useEffect(() => {
-    // Gracias al proxy, solo usamos '/api/products'
-    fetch('/api/products')
-      .then(res => res.json())
-      .then(data => setProducts(data))
-      .catch(err => console.error("Error cargando productos:", err))
-  }, [])
+  async function getProducts() {
+    const res = await fetch('/api/products');
+    const datos = await res.json()
+    console.log(datos);
+    setProducts(datos)
+  }
+  useEffect(()=>{
+    getProducts()
+  },[]);
 
+ 
   return (
     <div style={{ padding: '20px', fontFamily: 'sans-serif' }}>
       <h1>📦 Mi Catálogo</h1>
       <hr />
       
-      {products.length === 0 ? (
-        <p>No hay productos registrados.</p>
-      ) : (
-        <div style={{ display: 'grid', gap: '10px' }}>
-          {products.map(product => (
-            <div key={product.id} style={{ border: '1px solid #ccc', padding: '10px', borderRadius: '8px' }}>
-              <h3>{product.name}</h3>
-              <p>Precio: ${product.price}</p>
+      {
+        products.length === 0 ?
+        <p>No hay elementos para cargar.</p> : (
+          
+          
+            <div className='produt__container'>
+              {
+                products.map(p => <ProductCard key={p.id} {...p}/>)
+              }
             </div>
-          ))}
-        </div>
-      )}
+        )
+      }
     </div>
   )
 }
