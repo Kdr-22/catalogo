@@ -1,34 +1,34 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useEffect, useState } from 'react'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [products, setProducts] = useState([])
+
+  useEffect(() => {
+    // Gracias al proxy, solo usamos '/api/products'
+    fetch('/api/products')
+      .then(res => res.json())
+      .then(data => setProducts(data))
+      .catch(err => console.error("Error cargando productos:", err))
+  }, [])
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <div style={{ padding: '20px', fontFamily: 'sans-serif' }}>
+      <h1>📦 Mi Catálogo</h1>
+      <hr />
+      
+      {products.length === 0 ? (
+        <p>No hay productos registrados.</p>
+      ) : (
+        <div style={{ display: 'grid', gap: '10px' }}>
+          {products.map(product => (
+            <div key={product.id} style={{ border: '1px solid #ccc', padding: '10px', borderRadius: '8px' }}>
+              <h3>{product.name}</h3>
+              <p>Precio: ${product.price}</p>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
   )
 }
 
