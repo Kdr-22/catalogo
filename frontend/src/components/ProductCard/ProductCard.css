@@ -1,0 +1,20 @@
+.pCard{
+    outline: 1px solid red;
+    width: 30%;
+    padding: 1rem;
+    position: relative;
+}
+.pCard__divImg{
+    background-color: rgb(105, 74, 15);
+    min-height: 7rem;
+}
+.pCard__divTitle{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.pCard__pin{
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+}
