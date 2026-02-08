@@ -1,6 +1,6 @@
 import './ProductCard.css'
 export function ProductCard(props){
-    const {active, pinFunction, name, price, description, imgLink, imgAltText, copy} = props
+    const {active, pinFunction, valery_name: name, price, description, image_link : imgLink, imgAltText, copy} = props
     return (
         <div className="pCard">
             <div className="pCard__divImg">

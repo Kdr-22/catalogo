@@ -34,11 +34,11 @@ function App() {
         // Las promesas deben ser esperadas "await" para que devuelvan un resultado que no sea "pending"
         const datos = await getProducts() 
         setProducts(datos)
+        console.log(datos)
       } catch(error){
         console.error("Error al cargar los productos: ", error);
       }
     })()
-    
   },[]);
 
   useEffect(()=>{
@@ -47,7 +47,7 @@ function App() {
   }, [productsPin])
 
   const productosFiltrados = products.filter((p) => 
-  p.name.toLowerCase().includes(busqueda.toLowerCase())
+  p.valery_name.toLowerCase().includes(busqueda.toLowerCase())
 );
  return (
     <main className='main'>

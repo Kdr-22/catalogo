@@ -1,5 +1,6 @@
 export const getProducts = async() => {
-    const res  = await fetch("/api/products");
+    const url = "https://script.google.com/macros/s/AKfycbwOCRGTYg3RlZvfit_5uC3jPEld26TJJVhh4RoQ_2L3lUo3jAhCoOmP6lW5sTKhIIs/exec"
+    const res  = await fetch(url);
     if (!res.ok) throw new Error("Falló al conectar")
     return await res.json()
 }
