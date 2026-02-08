@@ -1,16 +1,17 @@
 import './ProductCard.css'
 export function ProductCard(props){
-    const {active, pinFunction, valery_name: name, price, description, image_link : imgLink, imgAltText, copy} = props
+    const {active, pinFunction, valery_name: name, price, description, imgAltText, copy} = props
+    const descripcionFormateada = description ? description.replace(/\\n/g, '\n') : '';
     return (
         <div className="pCard">
             <div className="pCard__divImg">
-                <img src={imgLink} alt={imgAltText} />
+                <img src="#" alt={imgAltText} />
             </div>
             <div className='pCard__divTitle'>
                 <h3>{name}</h3>
                 <p>{price}</p>
             </div>
-            <p>{description}</p>
+            <p className="pCard__text" >{descripcionFormateada}</p>
             <div className='pCard__pin'>
                 <label htmlFor="">Pinnear</label>
                 <input type="checkbox" name="" id="" checked={active} onChange={()=>pinFunction(props)}/>

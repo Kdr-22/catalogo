@@ -26,6 +26,18 @@ function App() {
     }
     
   }
+  const copyPaper = (producto)=> {
+    const textoACopiar = `📦 *${producto.valery_name}*\n` +
+                          `💰 Precio: $${producto.price}\n` +
+                          ` ℹ Detalle: ${producto.description || 'Consultar disponibilidad'}\n\n` +
+                          `📍 *Catálogo Digital*`;
+
+                          navigator.clipboard.writeText(textoACopiar).then(()=>{
+                            console.log("texto copiado al portapales")
+                          }).catch(err => {
+      console.error("Error al copiar: ", err);
+    });
+  }
 
   useEffect(()=>{ 
     // Esta es una funcion auto ejecutable (Puedes tambier usar una funcion normal y llamarla)
@@ -34,7 +46,7 @@ function App() {
         // Las promesas deben ser esperadas "await" para que devuelvan un resultado que no sea "pending"
         const datos = await getProducts() 
         setProducts(datos)
-        console.log(datos)
+       
       } catch(error){
         console.error("Error al cargar los productos: ", error);
       }
@@ -75,7 +87,7 @@ function App() {
 
                 const isChecked = productsPin.some(item => item.id === p.id);
 
-                return <ProductCard key={p.id} {...p} pinFunction={pinFunction} active={isChecked}/>
+                return <ProductCard key={p.id} {...p} pinFunction={pinFunction} active={isChecked} copyPaper={copyPaper}/>
               })
               )
             }
@@ -83,7 +95,7 @@ function App() {
             
           <div className='productPin'>
                 {
-                  productsPin.map(p=> <ProductPIn key={p.id}{...p} pinFunction={pinFunction}/>)
+                  productsPin.map(p=> <ProductPIn key={p.id}{...p} pinFunction={pinFunction} copyPaper={copyPaper}/>)
                 }
           </div>
         </div>

@@ -1,6 +1,6 @@
 .pCard{
     outline: 1px solid red;
-    width: 30%;
+    width: 45%;
     padding: 1rem;
     position: relative;
 }
@@ -20,4 +20,7 @@
     position: absolute;
     top: 1rem;
     right: 1rem;
+}
+.pCard__text{
+    white-space: pre-line; 
 }
