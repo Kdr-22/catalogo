@@ -8,6 +8,9 @@
     background-color: rgb(105, 74, 15);
     min-height: 7rem;
 }
+.pCard__divImg img{
+    width: 100%;
+}
 .pCard__divTitle{
     display: flex;
     justify-content: space-between;
