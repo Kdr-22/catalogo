@@ -10,6 +10,7 @@ function App() {
     const guardados = localStorage.getItem("mis-pines");
     return guardados ? JSON.parse(guardados):[];
   });
+  const [busqueda, setBusqueda] = useState("")
 
   const pinFunction = (nuevoProducto) => {
 
@@ -45,12 +46,21 @@ function App() {
     console.log("LocalStorage actualizado con éxito");
   }, [productsPin])
 
+  const productosFiltrados = products.filter((p) => 
+  p.name.toLowerCase().includes(busqueda.toLowerCase())
+);
  return (
     <main className='main'>
         <header>
 
           <h1>Catalogo de cosas</h1>
           <p className='hero__text'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur, architecto.</p>
+          <input 
+              type="text" 
+              placeholder="Buscar producto..." 
+              value={busqueda} 
+              onChange={(e) => setBusqueda(e.target.value)} 
+            />
         </header>
         <div className='mainContainer'>
 
@@ -58,10 +68,10 @@ function App() {
             {
               
 
-              products.length === 0 ?
+              productosFiltrados.length === 0 ?
               <p>No hay elementos para cargar.</p> : (
               // Podemos pasar todos los props que queramos a un componente este los agrupara en un solo prop y podemos desestructurar para acceder a ellos
-              products.map(p => {
+              productosFiltrados.map(p => {
 
                 const isChecked = productsPin.some(item => item.id === p.id);
 
@@ -70,7 +80,7 @@ function App() {
               )
             }
           </div>
-
+            
           <div className='productPin'>
                 {
                   productsPin.map(p=> <ProductPIn key={p.id}{...p} pinFunction={pinFunction}/>)
