@@ -1,6 +1,6 @@
 import './ProductCard.css'
 export function ProductCard(props){
-    const {name, price, description, imgLink, imgAltText, check, copy} = props
+    const {active, pinFunction, name, price, description, imgLink, imgAltText, copy} = props
     return (
         <div className="pCard">
             <div className="pCard__divImg">
@@ -13,9 +13,9 @@ export function ProductCard(props){
             <p>{description}</p>
             <div className='pCard__pin'>
                 <label htmlFor="">Pinnear</label>
-                <input type="checkbox" name="" id="" onChange={check}/>
+                <input type="checkbox" name="" id="" checked={active} onChange={()=>pinFunction(props)}/>
             </div>
-            <input type="button" value="Copy" onClick={()=>{copy()}} />
+            <input type="button" value="Get info" onClick={()=>copy()} />
         </div>
     );
 }

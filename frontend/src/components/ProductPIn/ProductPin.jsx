@@ -1,9 +1,11 @@
 import "./ProductPin.css"
-export function ProductPIn (){
+export function ProductPIn (props){
+    const {name, price,pinFunction} = props
     return (
         <div>
-          <p>Lorem, ipsum.</p>
-          <button></button>
+          <p> {name} Lorem, ipsum. {price}</p>
+          <button onClick={()=> pinFunction(props)}>🔻</button>
+        
         </div>
     )
 }
