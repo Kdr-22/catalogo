@@ -1,22 +1,34 @@
 import './ProductCard.css'
 export function ProductCard(props){
-    const {active, pinFunction, valery_name: name, price, description, imgAltText, copy} = props
+    const {active,colection, pinFunction, title: name, price, description, image_link, imgAltText, copy} = props
     const descripcionFormateada = description ? description.replace(/\\n/g, '\n') : '';
     return (
         <div className="pCard">
             <div className="pCard__divImg">
-                <img src="#" alt={imgAltText} />
+                <img src={image_link} alt={imgAltText} />
             </div>
-            <div className='pCard__divTitle'>
-                <h3>{name}</h3>
-                <p>{price}</p>
+            <div className='pCard__show'>
+                <div className='pCard__mainView'>
+                    <div>
+
+                    <div className='pCard__divTitle'>
+                        <h3 className='pCard__title'>{name}</h3>
+                        <p className='pCard__price'>${price}</p>
+                    </div>
+                    <p className='pCard__colection'>{colection}</p>
+                    </div>
+
+                </div>
+
+                <p className='pCard__subTitle'>Descripcion</p>
+                <p className="pCard__text" >{descripcionFormateada}</p>
+                <input type="button" value="Get info" onClick={()=>copy()} />
             </div>
-            <p className="pCard__text" >{descripcionFormateada}</p>
             <div className='pCard__pin'>
                 <label htmlFor="">Pinnear</label>
                 <input type="checkbox" name="" id="" checked={active} onChange={()=>pinFunction(props)}/>
             </div>
-            <input type="button" value="Get info" onClick={()=>copy()} />
+            
         </div>
     );
 }

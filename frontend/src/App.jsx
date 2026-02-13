@@ -63,34 +63,45 @@ function App() {
 );
  return (
     <main className='main'>
-        <header>
+        <header className='mainHeader'>
 
-          <h1>Catalogo de cosas</h1>
-          <p className='hero__text'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur, architecto.</p>
-          <input 
-              type="text" 
-              placeholder="Buscar producto..." 
-              value={busqueda} 
-              onChange={(e) => setBusqueda(e.target.value)} 
-            />
+          {/* <h1>Catalogo engine</h1> */}
+          <p className="mainDescription">Herramienta para facilidade de envio de productos y precios By KDR-22</p>
+          <div>
+
+          </div>
         </header>
+         
         <div className='mainContainer'>
 
           <div className='productContainer'> 
-            {
-              
+            <div className='productSearchDiv'>
+              <input 
+                className='productSearch'
+                type="text" 
+                placeholder="Buscar producto..." 
+                value={busqueda} 
+                onChange={(e) => setBusqueda(e.target.value)} 
+                />
+            </div>
 
-              productosFiltrados.length === 0 ?
-              <p>No hay elementos para cargar.</p> : (
-              // Podemos pasar todos los props que queramos a un componente este los agrupara en un solo prop y podemos desestructurar para acceder a ellos
-              productosFiltrados.map(p => {
 
-                const isChecked = productsPin.some(item => item.id === p.id);
+            <div className='cardContainer'>
+                {
+                  
 
-                return <ProductCard key={p.id} {...p} pinFunction={pinFunction} active={isChecked} copyPaper={copyPaper}/>
-              })
-              )
-            }
+                  productosFiltrados.length === 0 ?
+                  <p>No hay elementos para cargar.</p> : (
+                  // Podemos pasar todos los props que queramos a un componente este los agrupara en un solo prop y podemos desestructurar para acceder a ellos
+                  productosFiltrados.map(p => {
+
+                    const isChecked = productsPin.some(item => item.id === p.id);
+
+                    return <ProductCard key={p.id} {...p} pinFunction={pinFunction} active={isChecked} copyPaper={copyPaper}/>
+                  })
+                  )
+                }
+            </div>
           </div>
             
           <div className='productPin'>

@@ -1,34 +1,99 @@
+:root{
+    --borde-color: #eee;
+    --emphasis-color: rgb(33, 188, 194);
+}
+
+h3,p{
+    margin: 0;
+}
 body{
     margin: 0;
-    background-color: rgb(22, 22, 22);
-    color: aliceblue;
-    font-family: sans-serif;
+    background-color: #fff ;
+    color: rgb(26, 26, 26);
+    font-family: "Open Sans", sans-serif; 
 }
-h1{
-    margin: 0;
-    text-align: center;
+.productSearchDiv{
+    width: 70%;
+    display: block;
+    margin: 0 auto 1rem;
+    position: relative;
+    border: 1px solid var(--borde-color);
+    transition: border .5s ease, box-shadow .5s ease;
+    
 }
+.productSearchDiv:focus-within{
+    border: 1px solid transparent;
+    
+}
+.productSearchDiv::after{
+    position: absolute;
+    content: "";
+    width: 100%;
+    height:2px;
+    bottom: -1px;
+    left: 0;
+    background-color: rgba(3, 0, 0, 0.24);
+    transform:scaleX(0) ;
+    transform-origin: left;
+    opacity: 0;
+    transition: transform .5s ease, opacity .5s ease;
+}
+.productSearchDiv:focus-within{
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+
+}
+
+.productSearchDiv:focus-within::after{
+    transform: scaleX(1);
+    opacity: 1;
+    
+}
+
+.productSearch{
+    display: block;
+    border-radius: 0;
+    height: 2rem;
+    width: 100%;
+    padding: .5rem;
+    border: none;
+    position: relative;
+    
+}
+
+.productSearch::placeholder{
+    color: #777676;
+    font-style: italic;
+}
+.productSearch:focus{
+    outline: none;
+}
+
 main{
-    outline: 1px solid red;
+    border: 1px solid var(--borde-color);
     max-width: 1240px;
     min-height: 100dvh;
     margin: 0 auto;
 }
-
+.mainHeader{
+    border-bottom: 1px solid var(--borde-color);
+}
 .hero__text{
     text-align: center;
 }
 
 .productContainer{
-    border: 1px solid gray;
-    display: flex;
-    flex-flow: row wrap ;
-    gap: 1rem;
     padding: 1rem;
     width: 70%;
 }
-
+.cardContainer{
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1rem;
+}
 .productPin{
+    order:  -1;
+    /* display: none; */
     width: 30%;
     min-height: 100dvh;
     outline: 1px solid rebeccapurple;
