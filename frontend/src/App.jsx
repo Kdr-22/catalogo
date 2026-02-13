@@ -2,7 +2,8 @@ import { useEffect, useState } from 'react'
 import { ProductCard } from './components/ProductCard/ProductCard'
 import { ProductPIn } from './components/ProductPIn/ProductPin'
 import './App.css'
-import { getProducts } from './services/api'
+import { DATOS } from './services/mokup'
+// import { getProducts } from './services/api'
 
 function App() {
   const [products, setProducts] = useState([])
@@ -44,8 +45,8 @@ function App() {
     (async () => {
       try{
         // Las promesas deben ser esperadas "await" para que devuelvan un resultado que no sea "pending"
-        const datos = await getProducts() 
-        setProducts(datos)
+        // const datos = await getProducts() 
+        setProducts(DATOS)        
        
       } catch(error){
         console.error("Error al cargar los productos: ", error);
