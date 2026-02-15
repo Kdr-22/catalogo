@@ -1,3 +1,8 @@
-*{
-    box-sizing: border-box;
+/* PM -> Pre-marked styles, just for write less code */
+.PM-internalPadding {
+  padding: 1rem;
+}
+
+.PM-outline1pxsolidblack {
+  outline: 1px solid black;
 }
