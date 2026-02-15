@@ -1,8 +1,9 @@
-import { useEffect, useState } from 'react'
-import { ProductCard } from './components/ProductCard/ProductCard'
-import { ProductPIn } from './components/ProductPIn/ProductPin'
-import './App.css'
-import { DATOS } from './services/mokup'
+import { useEffect, useState } from "react";
+import { ProductCard } from "./components/ProductCard/ProductCard";
+import { ProductPIn } from "./components/ProductPIn/ProductPin";
+import "./reset.css";
+import "./App.css";
+import { DATOS } from "./services/mokup";
 // import { getProducts } from './services/api'
 
 function App() {
