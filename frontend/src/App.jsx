@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { ProductCard } from "./components/ProductCard/ProductCard";
 import { ProductPIn } from "./components/ProductPIn/ProductPin";
+import { CopyButtons } from "./components/CopyButtons/CopyButtons";
 import "./reset.css";
 import "./App.css";
 import { DATOS } from "./services/mokup";
@@ -71,12 +72,7 @@ function App() {
           <button>Exportar grupo</button>
           <button>Borrar todo</button>
         </div>
-        <div className="">
-          {/* Insertar componente de 3 botones  */}
-          <button>Bs</button>
-          <button>$$</button>
-          <button>Bs-$$</button>
-        </div>
+        {<CopyButtons />}
       </div>
       <div className="PM-outline1pxsolidblack PM-internalPadding">
         <p>Colecciones</p>
