@@ -1,0 +1,13 @@
+.productPinned {
+  outline: 1px solid red;
+  padding: 0.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.productPinned__inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
