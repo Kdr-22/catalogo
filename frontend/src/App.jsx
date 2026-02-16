@@ -68,16 +68,18 @@ function App() {
 
   const leftcontrols = (
     <div className="controls PM-outline1pxsolidblack">
-      <div>
-        <div className="">
+      <div className="leftTopControlls">
+        <div className="leftTopControlls__inner leftTopControlls__inner--top">
           <button>Exportar grupo</button>
           <button>Borrar todo</button>
         </div>
-        {<CopyButtons />}
+        <div className="leftTopControlls__inner leftTopControlls__inner--bot">
+          {<CopyButtons />}
+        </div>
       </div>
-      <div className="PM-outline1pxsolidblack PM-internalPadding">
-        <p>Colecciones</p>
-        <div>
+      <div className="leftControlls__collections">
+        <p className="collections__text">Colecciones</p>
+        <div className="collections__buttons">
           <button>1</button>
           <button>2</button>
           <button>3</button>
