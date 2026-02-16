@@ -1,84 +1,126 @@
-.pCard{
-    /* outline: 1px solid red; */
-    /* width: 33.3%; */
-    height: 25rem;
-    overflow: hidden;
-    position: relative;
-    margin-bottom: 2rem;
-    box-shadow: 0 20px 25px -5px rgba(67, 71, 85, 0.1), 0 10px 10px -5px rgba(67, 71, 85, 0.04);
-    font-family: "Open Sans", sans-serif; 
-    transform: scale(1);
-    transition: transform .5s ease;
+.pCard {
+  /* outline: 1px solid red; */
+  /* width: 33.3%; */
+  height: 25rem;
+  overflow: hidden;
+  position: relative;
+  transform: scale(1);
+  transition: transform 0.5s ease;
+  box-shadow: 1px 1px 10px rgba(138, 138, 138, 0.541);
 }
 
-.pCard:hover{
-    transform: scale(1.02);
+.pCard:hover {
+  transform: scale(1.05);
 }
 
-.pCard__divImg{
-    background-color: rgb(105, 74, 15);
-    width: 100%;
-    height: 20rem;
-    overflow: hidden;
+.pCard__divImg {
+  background-color: rgb(105, 74, 15);
+  width: 100%;
+  height: 20rem;
+  overflow: hidden;
 }
 
-.pCard__divImg img{
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: 50% 50%;
+.pCard__divImg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 50%;
 }
 
-.pCard__show{
-    background-color: rgb(255, 255, 255);
-    padding: .5rem;
-    transition: transform .5s ease;
+.pCard__show {
+  /* outline: 2px solid brown; */
+  min-height: 30rem;
+  background-color: rgb(255, 255, 255);
+  padding: 0.5rem;
+  transition: transform 0.5s ease;
 }
-.pCard__mainView{
-    padding-bottom: .5rem;
-    height: 4.5rem;
-    display: flex;
-    align-items: center;
-}
-.pCard:hover .pCard__show{
-    transform: translateY(-15rem);
-    min-height: 30rem;
-}
-.pCard__title{
-    text-transform: uppercase;
-    font-size: .9rem;
+.pCard__mainView {
+  padding-bottom: 0.5rem;
+  min-height: 4.5rem;
 
+  /* background-color: rebeccapurple; */
 }
-.pCard__colection{
-    color: gray;
-    text-transform: uppercase;
-    font-size: .7rem;
+.pCard__preview {
+  /* outline: 2px solid red; */
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
 }
-.pCard__price{
-    font-weight: bold;
-    font-size: 1.5rem;
-    color: var(--emphasis-color);
-    /* background-color: black; */
-    
+.pCard:hover .pCard__show {
+  transform: translateY(-14.5rem);
 }
-.pCard__divTitle{
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    /* align-items: center; */
+.pCard__title {
+  text-transform: uppercase;
+  /* background-color: aqua; */
+  /* width: 100%; */
+  font-weight: bold;
+  text-overflow: ellipsis;
+  text-wrap: nowrap;
+  overflow: hidden;
 }
-.pCard__subTitle{
-    font-weight: bold;
-    font-size: .9rem;
-    margin-bottom: 1rem;
-    text-transform: uppercase;
+.pCard:hover .pCard__title {
+  text-wrap: wrap;
 }
-.pCard__pin{
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
+.pCard__colection {
+  color: gray;
+  text-transform: uppercase;
+  font-size: 0.7rem;
 }
-.pCard__text{
-    font-size: .8rem;
-    white-space: pre-line; 
+.pCard__price {
+  font-weight: bold;
+  font-size: 1.5rem;
+  color: var(--emphasis-color);
+  /* background-color: black; */
+}
+.pCard__divTitle {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.pCard__subTitle {
+  font-weight: bold;
+  font-size: 0.8rem;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+}
+.pCard__actions {
+  position: absolute;
+  width: 100%;
+  top: 0rem;
+  left: 0rem;
+  padding: 0.5rem;
+  /* outline: 1px solid saddlebrown; */
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  opacity: 0;
+  box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.205);
+  transition:
+    background-color 0.5s,
+    opacity 0.5s;
+}
+/* .pinElement {
+  display: none;
+} */
+.pCard:hover .pCard__actions {
+  background-color: rgba(0, 0, 0, 0.192);
+  opacity: 1;
+}
+.pCard__actionsInnerTop {
+  width: 100%;
+  min-height: 2rem;
+}
+.pCard__actionsInnerBot {
+  display: flex;
+  justify-content: space-between;
+  /* outline: 1px solid red; */
+  width: 100%;
+}
+.pCard__actionsInnerBot button {
+  font-size: 0.8;
+}
+.pCard__text {
+  font-size: 0.8rem;
+  white-space: pre-line;
 }

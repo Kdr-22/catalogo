@@ -22,12 +22,12 @@ export function ProductCard(props) {
       </div>
       <div className="pCard__show">
         <div className="pCard__mainView">
-          <div>
+          <div className="pCard__preview">
+            <h3 className="pCard__title">{name}</h3>
             <div className="pCard__divTitle">
-              <h3 className="pCard__title">{name}</h3>
               <p className="pCard__price">${price}</p>
+              <p className="pCard__colection">{colection}</p>
             </div>
-            <p className="pCard__colection">{colection}</p>
           </div>
         </div>
 
@@ -35,16 +35,22 @@ export function ProductCard(props) {
         <p className="pCard__text">{descripcionFormateada}</p>
         {/* <input type="button" value="Get info" onClick={() => copy()} /> */}
       </div>
-      <div className="pCard__pin">
-        <CopyButtons />
-        <label htmlFor="">Pinnear</label>
-        <input
-          type="checkbox"
-          name=""
-          id=""
-          checked={active}
-          onChange={() => pinFunction(props)}
-        />
+      <div className="pCard__actions">
+        <div className="pCard__actionsInnerTop">
+          <button>+</button>
+        </div>
+        <div className="pCard__actionsInnerBot">
+          <button>Gallery</button>
+          <input
+            className="pinElement"
+            type="checkbox"
+            name=""
+            id=""
+            checked={active}
+            onChange={() => pinFunction(props)}
+          />
+          <CopyButtons />
+        </div>
       </div>
     </div>
   );
