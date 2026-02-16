@@ -12,3 +12,7 @@ button {
   border: none;
   padding: 0.5rem 1rem;
 }
+
+button:active {
+  background-color: rgb(106, 109, 109);
+}

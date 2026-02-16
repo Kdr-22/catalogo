@@ -17,10 +17,14 @@ body {
 
 .appContainer {
   display: flex;
+  min-height: 100dvh;
 }
 
 .appContainer__left {
   width: 30%;
+  height: 100dvh;
+  position: sticky;
+  top: 0;
   /* outline: 2px solid rgb(22, 219, 111); */
 }
 

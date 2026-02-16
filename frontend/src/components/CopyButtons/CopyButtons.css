@@ -11,7 +11,7 @@
 }
 
 .CopyButtonsDiv__b:hover {
-  background-color: rgba(204, 204, 204, 0.253);
+  background-color: rgb(88, 88, 88);
 }
 .CopyButtonsDiv__b:active {
   background-color: bisque;
