@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
+import "./reset.css";
+import "./App.css";
 import { ProductCard } from "./components/ProductCard/ProductCard";
 import { ProductPIn } from "./components/ProductPIn/ProductPin";
 import { CopyButtons } from "./components/CopyButtons/CopyButtons";
-import "./reset.css";
-import "./App.css";
+
 import { DATOS } from "./services/mokup";
 // import { getProducts } from './services/api'
 

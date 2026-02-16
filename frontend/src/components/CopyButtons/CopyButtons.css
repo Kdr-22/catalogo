@@ -1,0 +1,18 @@
+.CopyButtonsDiv {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.CopyButtonsDiv__b {
+  min-width: 45px;
+  background-color: white;
+  border: 1px solid rgb(211, 206, 206);
+  transition: background-color 0.3s ease;
+}
+
+.CopyButtonsDiv__b:hover {
+  background-color: rgba(204, 204, 204, 0.253);
+}
+.CopyButtonsDiv__b:active {
+  background-color: bisque;
+}

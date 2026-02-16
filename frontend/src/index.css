@@ -6,3 +6,9 @@
 .PM-outline1pxsolidblack {
   outline: 1px solid black;
 }
+
+button {
+  /* font-size: 8px; */
+  border: none;
+  padding: 0.5rem 1rem;
+}
