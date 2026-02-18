@@ -5,7 +5,7 @@ export function ProductCard(props) {
     active,
     colection,
     pinFunction,
-    title: name, // Puedes renombrar la variable que viene del prop por la de tu preferencia
+    title: name, // Puedes renombrar la variable que viene del prop por la de tu
     price,
     description,
     image_link,
@@ -54,7 +54,8 @@ export function ProductCard(props) {
         </div>
         <div className="pCard__actionsInnerBot">
           <button>Gallery</button>
-          <CopyButtons />
+          <CopyButtons {...props} />
+          {/* Averiguar si esta implementacion tiene repercucion en rendimiento */}
         </div>
       </div>
     </div>

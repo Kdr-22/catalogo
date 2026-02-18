@@ -30,22 +30,6 @@ function App() {
       console.log("Agregado a pines");
     }
   };
-  const copyPaper = (producto) => {
-    const textoACopiar =
-      `📦 *${producto.valery_name}*\n` +
-      `💰 Precio: $${producto.price}\n` +
-      ` ℹ Detalle: ${producto.description || "Consultar disponibilidad"}\n\n` +
-      `📍 *Catálogo Digital*`;
-
-    navigator.clipboard
-      .writeText(textoACopiar)
-      .then(() => {
-        console.log("texto copiado al portapales");
-      })
-      .catch((err) => {
-        console.error("Error al copiar: ", err);
-      });
-  };
   useEffect(() => {
     // Esta es una funcion auto ejecutable (Puedes tambier usar una funcion normal y llamarla)
     (async () => {
@@ -115,12 +99,7 @@ function App() {
           }
           <div className="pinElements PM-outline1pxsolidblack">
             {productsPin.map((p) => (
-              <ProductPIn
-                key={p.id}
-                {...p}
-                pinFunction={pinFunction}
-                copyPaper={copyPaper}
-              />
+              <ProductPIn key={p.id} {...p} pinFunction={pinFunction} />
             ))}
           </div>
         </div>
@@ -148,7 +127,6 @@ function App() {
                       {...p}
                       pinFunction={pinFunction}
                       active={isChecked}
-                      copyPaper={copyPaper}
                     />
                   );
                 })
