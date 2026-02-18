@@ -5,7 +5,7 @@ export function ProductCard(props) {
     active,
     colection,
     pinFunction,
-    title: name,
+    title: name, // Puedes renombrar la variable que viene del prop por la de tu preferencia
     price,
     description,
     image_link,
@@ -15,8 +15,21 @@ export function ProductCard(props) {
   const descripcionFormateada = description
     ? description.replace(/\\n/g, "\n")
     : "";
+
+  // Con esta funcion envitamos la propagacion del evento de click hacia el padre al presionar algun boton en la tarjeta
+  const handleclick = (e) => {
+    if (e.target.tagName !== "BUTTON") {
+      // console.log("clien en el cuerpo de la tarjeta");
+      pinFunction(props);
+    } else {
+      // console.log("click en un boton");
+    }
+  };
   return (
-    <div className="pCard">
+    <div
+      onClick={(e) => handleclick(e)}
+      className={`pCard ${active ? "pCard--active" : null}`}
+    >
       <div className="pCard__divImg">
         <img src={image_link} alt={imgAltText} />
       </div>
@@ -41,14 +54,6 @@ export function ProductCard(props) {
         </div>
         <div className="pCard__actionsInnerBot">
           <button>Gallery</button>
-          <input
-            className="pinElement"
-            type="checkbox"
-            name=""
-            id=""
-            checked={active}
-            onChange={() => pinFunction(props)}
-          />
           <CopyButtons />
         </div>
       </div>

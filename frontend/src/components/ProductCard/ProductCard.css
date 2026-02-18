@@ -124,3 +124,7 @@
   font-size: 0.8rem;
   white-space: pre-line;
 }
+.pCard--active {
+  outline: 3px solid rgb(39, 39, 167);
+  box-shadow: 2px 10px 10px rgba(32, 32, 139, 0.486);
+}
