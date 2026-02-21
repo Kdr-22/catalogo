@@ -87,12 +87,63 @@ function App() {
   // //       );
   // //   };
 
-  let colectionSavedIndex = 1;
-  console.log(colectionSavedIndex);
+  const colectionSavedGroups = [
+    [
+      {
+        id: "ACC-001",
+        title: "Mini UPS DC",
+        colection: "accesorio",
+        valery_name: "Mini UPS 20000MaH",
+        description:
+          "• Capacidad: 20.000 mAh de alta duración. \n• Compatibilidad: Routers, Antenas POE, Cámaras de seguridad y dispositivos de red.\n• Salidas DC: 5V / 9V / 12V seleccionables.\n• Puerto POE: 15V / 24V para antenas y equipos específicos.\n• Indicadores: LEDs de estado de carga y encendido.\n",
+        availability: "in stock",
+        condition: "new",
+        price: 23,
+        link: "https://wa.me/584129230341?text=Hola%20Compucentro,%20me%20interesa%20el%20producto%20ID:%20ACC-001%20-%20Mini UPS DC",
+        image_link:
+          "https://raw.githubusercontent.com/KDR-2/compucentro-img/main/ACC-001.webp",
+        additional_image_link: "",
+        brand: "Olax",
+        google_product_category:
+          "Electronics > Networking > Network Hubs & Switches",
+        product_type: "Accesorios > Energía",
+        availability_circle_origin: "",
+      },
+      {
+        id: "ACC-002",
+        title: "Funda Protectora para Laptops",
+        colection: "accesorio",
+        valery_name: "Forro Laptop UP",
+        description:
+          'Funda Protectora U-products para Laptop 14"\n\nProtección esencial contra rayones, polvo y golpes leves. Diseño ligero y resistente.\n\n• Compatibilidad: Laptops y Tablets hasta 14 pulgadas. \n• Material: Neopreno / Tela acolchada de alta densidad. \n• Marca: U-products. \n• Uso: Ideal para morrales o transporte individual.\n\nOfrecemos precio al mayor disponible en divisas',
+        availability: "in stock",
+        condition: "new",
+        price: 7.5,
+        link: "https://wa.me/584129230341?text=Hola%20Compucentro,%20me%20interesa%20el%20producto%20ID:%20ACC-002%20-%20Funda Protectora para Laptops",
+        image_link:
+          "https://raw.githubusercontent.com/KDR-2/compucentro-img/main/ACC-002.webp",
+        additional_image_link: "",
+        brand: "U-products",
+        google_product_category:
+          "Electronics > Laptop Accessories > Laptop Cases",
+        product_type: "Accesorios > Protección",
+        availability_circle_origin: "",
+      },
+    ],
+    [],
+    [],
+    [],
+    [],
+  ];
 
-  const colectionSavedGroups = [[], [], [], [], []];
+  const [colectionIndex, setColectionIndex] = useState(() => {
+    const savedIdenx = localStorage.getItem("CurrentActiveCollectionIndex");
+
+    return savedIdenx ? savedIdenx : 1;
+  });
 
   const [products, setProducts] = useState([]);
+
   const [productsPin, setProductsPin] = useState(() => {
     const guardados = localStorage.getItem("mis-pines");
     return guardados ? JSON.parse(guardados) : [];
@@ -116,6 +167,16 @@ function App() {
   const productosFiltrados = products.filter((p) =>
     p.valery_name.toLowerCase().includes(busqueda.toLowerCase()),
   );
+
+  const saveCurrentActiveIndex = (e) => {
+    const button = e.target.closest("button");
+    localStorage.setItem(
+      "CurrentActiveCollectionIndex",
+      Number(button.textContent),
+    );
+    setColectionIndex(button.textContent);
+  };
+
   useEffect(() => {
     // Esta es una funcion auto ejecutable (Puedes tambier usar una funcion normal y llamarla)
     (async () => {
@@ -130,7 +191,6 @@ function App() {
   }, []);
   useEffect(() => {
     localStorage.setItem("Colecciones", JSON.stringify(productsPin));
-    console.log("LocalStorage actualizado con éxito");
   }, [productsPin]);
 
   const leftcontrols = (
@@ -147,12 +207,17 @@ function App() {
       <div className="leftControlls__collections">
         <p className="collections__text">Colecciones</p>
 
-        <div className="collections__buttons">
+        <div
+          onClick={(e) => {
+            saveCurrentActiveIndex(e);
+          }}
+          className="collections__buttons"
+        >
           {colectionSavedGroups.map((p, indice) => {
             return (
               <CollectionButtons
                 key={indice}
-                id={colectionSavedIndex}
+                activeIndex={colectionIndex}
                 textContent={indice + 1}
               />
             );
@@ -186,9 +251,9 @@ function App() {
             leftcontrols
           }
           <div className="pinElements">
-            {/* {colection[colectionIndex].map((p) => (
+            {colectionSavedGroups[colectionIndex - 1].map((p) => (
               <ProductPIn key={p.id} {...p} pinFunction={pinFunction} />
-            ))} */}
+            ))}
           </div>
         </div>
 
