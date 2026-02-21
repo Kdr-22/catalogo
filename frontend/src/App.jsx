@@ -4,17 +4,17 @@ import "./App.css";
 import { ProductCard } from "./components/ProductCard/ProductCard";
 import { ProductPIn } from "./components/ProductPIn/ProductPin";
 import { CopyButtons } from "./components/CopyButtons/CopyButtons";
-
+import { CollectionButtons } from "./components/CollectionButtons/CollectionButtons";
 import { DATOS } from "./services/mokup";
 // import { getProducts } from './services/api'
 
 function App() {
+  //  // Socorro no entres aqui hay intentos Vanilla de crear la botonera de las colecciones
   // CollectionInfo tiene = Como primer elemento el numero de la seleccion activa en este momento y arreglos de objetos guardados en las colecciones
 
   // const colection = [1, [], [], [], []];
   // const colectionIndex = colection[0];
 
-  // Socorro no entres aqui hay intentos Vanilla de crear la botonera de las colecciones
   // // recuperamos el "Colection selecionado"
   // const getCurrentActiveIndex = (e) => {
   //   const buttons = e.target.closest("button").parentElement.childNodes; //esto devuelve una coleccion de elementosHTML
@@ -87,6 +87,11 @@ function App() {
   // //       );
   // //   };
 
+  let colectionSavedIndex = 1;
+  console.log(colectionSavedIndex);
+
+  const colectionSavedGroups = [[], [], [], [], []];
+
   const [products, setProducts] = useState([]);
   const [productsPin, setProductsPin] = useState(() => {
     const guardados = localStorage.getItem("mis-pines");
@@ -142,7 +147,17 @@ function App() {
       <div className="leftControlls__collections">
         <p className="collections__text">Colecciones</p>
 
-        <div className="collections__buttons"></div>
+        <div className="collections__buttons">
+          {colectionSavedGroups.map((p, indice) => {
+            return (
+              <CollectionButtons
+                key={indice}
+                id={colectionSavedIndex}
+                textContent={indice + 1}
+              />
+            );
+          })}
+        </div>
       </div>
     </div>
   );

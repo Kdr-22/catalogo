@@ -56,9 +56,6 @@ body {
   justify-content: space-between;
   gap: 0.5rem;
 }
-.collections__buttons button {
-  width: 100%;
-}
 .appContainer__right {
   width: 70%;
   /* outline: 2px solid rgb(22, 219, 111); */
@@ -124,7 +121,4 @@ body {
   grid-template-columns: repeat(3, 1fr);
   gap: 1rem;
   min-height: 100dvh;
-}
-.button--active {
-  background-color: rgb(43, 43, 136);
 }
