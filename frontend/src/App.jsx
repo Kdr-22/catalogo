@@ -11,48 +11,81 @@ import { DATOS } from "./services/mokup";
 function App() {
   // CollectionInfo tiene = Como primer elemento el numero de la seleccion activa en este momento y arreglos de objetos guardados en las colecciones
 
-  const colection = [1, [], [], [], []];
-  const colectionIndex = colection[0];
+  // const colection = [1, [], [], [], []];
+  // const colectionIndex = colection[0];
 
-  // recuperamos el "Colection selecionado"
-  const getCurrentActiveIndex = (e) => {
-    const buttons = e.target.closest("button").parentElement.childNodes; //esto devuelve una coleccion de elementosHTML
-    const buttonpulsado = e.target.closest("button");
+  // Socorro no entres aqui hay intentos Vanilla de crear la botonera de las colecciones
+  // // recuperamos el "Colection selecionado"
+  // const getCurrentActiveIndex = (e) => {
+  //   const buttons = e.target.closest("button").parentElement.childNodes; //esto devuelve una coleccion de elementosHTML
+  //   const buttonpulsado = e.target.closest("button");
 
-    buttons.forEach((button) => {
-      if (button !== buttonpulsado) {
-        button.classList.remove("button--active");
-      }
-    });
+  //   buttons.forEach((button) => {
+  //     if (button !== buttonpulsado) {
+  //       button.classList.remove("button--active");
+  //     }
+  //   });
 
-    buttonpulsado.classList.contains("button--active")
-      ? null
-      : e.target.closest("button").classList.add("button--active");
-    return e.target.closest("button").textContent;
-    // return console.log(
-    // e.target.closest("button").textContent, //Se usa closests para asegurar que al menos sea un boton al que le demos click
-    // e.target.parentElement,
-    // e,
-    // Al volver vamos a seguir con la linea de pensamiento de ir armando la forma de mantener una coleccion activa para ello estamos recuperando el indice de coleccion activo
-  };
-  const getTrueActiveIndex = (a) => {
-    window.localStorage.setItem("IndexActual", JSON.stringify(a));
-    console.log(`guardado ${a} como indice actual`);
-  };
+  //   buttonpulsado.classList.contains("button--active")
+  //     ? null
+  //     : e.target.closest("button").classList.add("button--active");
+  //   return e.target.closest("button").textContent;
+  //   // return console.log(
+  //   // e.target.closest("button").textContent, //Se usa closests para asegurar que al menos sea un boton al que le demos click
+  //   // e.target.parentElement,
+  //   // e,
+  //   // Al volver vamos a seguir con la linea de pensamiento de ir armando la forma de mantener una coleccion activa para ello estamos recuperando el indice de coleccion activo
+  // };
+  // const getTrueActiveIndex = (a) => {
+  //   window.localStorage.setItem("IndexActual", JSON.stringify(a));
+  //   console.log(`guardado ${a} como indice actual`);
+  // };
+  // const ColectionButtons = () => {
+  //   let getItemStored = localStorage.getItem("IndexActual");
 
-  // const currentActiveIndex = 1
-  // const formatearPrecio = (price, target) => {
-  //     if (target.textContent === "$")
-  //       return `El precio del producto es de $: ${price}`;
-  //     if (target.textContent === "Bs")
-  //       return `El precio del producto es de Bs: ${price * 50}`;
-  //     if (target.textContent === "All")
-  //       return (
-  //         `El precio del producto es de $: ${price}\n` +
-  //         `El precio del producto es de Bs: ${price * 50} `
-  //         // El numero de la tasa tiene que ser una variable, de momento vamos a dejarlo fijo en 50 para testing
-  //       );
-  //   };
+  //   let idiceguardado = undefined;
+  //   getItemStored ? (idiceguardado = JSON.parse(getItemStored)) : 1;
+  //   let Div = document.createElement("div");
+
+  //   function crearBotones(indice) {
+  //     let newButon = document.createElement("button");
+  //     if (indice === Number(idiceguardado)) {
+  //       newButon.classList.add("button--active");
+  //     }
+  //     let newText = document.createTextNode(`${indice}`);
+  //     newButon.appendChild(newText);
+
+  //     Div.appendChild(newButon);
+  //   }
+
+  //   for (let i = 0; i <= 4; i++) {
+  //     crearBotones(i);
+  //   }
+
+  //   return (
+  //     <div
+  //       onClick={(e) => {
+  //         getTrueActiveIndex(getCurrentActiveIndex(e));
+  //       }}
+  //       className="collections__buttons"
+  //     >
+  //       {/* Botonoes 1 2 3 4 5 */}
+  //     </div>
+  //   );
+  // };
+  // // const currentActiveIndex = 1
+  // // const formatearPrecio = (price, target) => {
+  // //     if (target.textContent === "$")
+  // //       return `El precio del producto es de $: ${price}`;
+  // //     if (target.textContent === "Bs")
+  // //       return `El precio del producto es de Bs: ${price * 50}`;
+  // //     if (target.textContent === "All")
+  // //       return (
+  // //         `El precio del producto es de $: ${price}\n` +
+  // //         `El precio del producto es de Bs: ${price * 50} `
+  // //         // El numero de la tasa tiene que ser una variable, de momento vamos a dejarlo fijo en 50 para testing
+  // //       );
+  // //   };
 
   const [products, setProducts] = useState([]);
   const [productsPin, setProductsPin] = useState(() => {
@@ -94,6 +127,7 @@ function App() {
     localStorage.setItem("Colecciones", JSON.stringify(productsPin));
     console.log("LocalStorage actualizado con éxito");
   }, [productsPin]);
+
   const leftcontrols = (
     <div className="controls ">
       <div className="leftTopControlls">
@@ -107,18 +141,8 @@ function App() {
       </div>
       <div className="leftControlls__collections">
         <p className="collections__text">Colecciones</p>
-        <div
-          onClick={(e) => {
-            getTrueActiveIndex(getCurrentActiveIndex(e));
-          }}
-          className="collections__buttons"
-        >
-          <button>1</button>
-          <button>2</button>
-          <button>3</button>
-          <button>4</button>
-          <button>5</button>
-        </div>
+
+        <div className="collections__buttons"></div>
       </div>
     </div>
   );
@@ -147,9 +171,9 @@ function App() {
             leftcontrols
           }
           <div className="pinElements">
-            {colection[colectionIndex].map((p) => (
+            {/* {colection[colectionIndex].map((p) => (
               <ProductPIn key={p.id} {...p} pinFunction={pinFunction} />
-            ))}
+            ))} */}
           </div>
         </div>
 
