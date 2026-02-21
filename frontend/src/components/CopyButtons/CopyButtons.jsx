@@ -13,7 +13,7 @@ export function CopyButtons({ valery_name, price, description }) {
         // El numero de la tasa tiene que ser una variable, de momento vamos a dejarlo fijo en 50 para testing
       );
   };
-
+  //  ‼️‼️Si el target apunta a algo entre los botonoes va a marcar undefined corregir
   const copyPaper = (name, description, price, target) => {
     const textoACopiar =
       `${name}*\n` +

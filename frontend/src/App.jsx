@@ -9,6 +9,51 @@ import { DATOS } from "./services/mokup";
 // import { getProducts } from './services/api'
 
 function App() {
+  // CollectionInfo tiene = Como primer elemento el numero de la seleccion activa en este momento y arreglos de objetos guardados en las colecciones
+
+  const colection = [1, [], [], [], []];
+  const colectionIndex = colection[0];
+
+  // recuperamos el "Colection selecionado"
+  const getCurrentActiveIndex = (e) => {
+    const buttons = e.target.closest("button").parentElement.childNodes; //esto devuelve una coleccion de elementosHTML
+    const buttonpulsado = e.target.closest("button");
+
+    buttons.forEach((button) => {
+      if (button !== buttonpulsado) {
+        button.classList.remove("button--active");
+      }
+    });
+
+    buttonpulsado.classList.contains("button--active")
+      ? null
+      : e.target.closest("button").classList.add("button--active");
+    return e.target.closest("button").textContent;
+    // return console.log(
+    // e.target.closest("button").textContent, //Se usa closests para asegurar que al menos sea un boton al que le demos click
+    // e.target.parentElement,
+    // e,
+    // Al volver vamos a seguir con la linea de pensamiento de ir armando la forma de mantener una coleccion activa para ello estamos recuperando el indice de coleccion activo
+  };
+  const getTrueActiveIndex = (a) => {
+    window.localStorage.setItem("IndexActual", JSON.stringify(a));
+    console.log(`guardado ${a} como indice actual`);
+  };
+
+  // const currentActiveIndex = 1
+  // const formatearPrecio = (price, target) => {
+  //     if (target.textContent === "$")
+  //       return `El precio del producto es de $: ${price}`;
+  //     if (target.textContent === "Bs")
+  //       return `El precio del producto es de Bs: ${price * 50}`;
+  //     if (target.textContent === "All")
+  //       return (
+  //         `El precio del producto es de $: ${price}\n` +
+  //         `El precio del producto es de Bs: ${price * 50} `
+  //         // El numero de la tasa tiene que ser una variable, de momento vamos a dejarlo fijo en 50 para testing
+  //       );
+  //   };
+
   const [products, setProducts] = useState([]);
   const [productsPin, setProductsPin] = useState(() => {
     const guardados = localStorage.getItem("mis-pines");
@@ -30,6 +75,9 @@ function App() {
       console.log("Agregado a pines");
     }
   };
+  const productosFiltrados = products.filter((p) =>
+    p.valery_name.toLowerCase().includes(busqueda.toLowerCase()),
+  );
   useEffect(() => {
     // Esta es una funcion auto ejecutable (Puedes tambier usar una funcion normal y llamarla)
     (async () => {
@@ -43,15 +91,11 @@ function App() {
     })();
   }, []);
   useEffect(() => {
-    localStorage.setItem("mis-pines", JSON.stringify(productsPin));
+    localStorage.setItem("Colecciones", JSON.stringify(productsPin));
     console.log("LocalStorage actualizado con éxito");
   }, [productsPin]);
-  const productosFiltrados = products.filter((p) =>
-    p.valery_name.toLowerCase().includes(busqueda.toLowerCase()),
-  );
-
   const leftcontrols = (
-    <div className="controls PM-outline1pxsolidblack">
+    <div className="controls ">
       <div className="leftTopControlls">
         <div className="leftTopControlls__inner leftTopControlls__inner--top">
           <button>Exportar grupo</button>
@@ -63,7 +107,12 @@ function App() {
       </div>
       <div className="leftControlls__collections">
         <p className="collections__text">Colecciones</p>
-        <div className="collections__buttons">
+        <div
+          onClick={(e) => {
+            getTrueActiveIndex(getCurrentActiveIndex(e));
+          }}
+          className="collections__buttons"
+        >
           <button>1</button>
           <button>2</button>
           <button>3</button>
@@ -92,26 +141,26 @@ function App() {
   return (
     <main className="main">
       <div className="appContainer">
-        <div className="appContainer__left PM-internalPadding PM-outline1pxsolidblack">
+        <div className="appContainer__left ">
           {
             /* controles para la gestion de elementos pineados  */
             leftcontrols
           }
-          <div className="pinElements PM-outline1pxsolidblack">
-            {productsPin.map((p) => (
+          <div className="pinElements">
+            {colection[colectionIndex].map((p) => (
               <ProductPIn key={p.id} {...p} pinFunction={pinFunction} />
             ))}
           </div>
         </div>
 
         <div className="appContainer__right">
-          <div className="rigth PM-outline1pxsolidblack">
+          <div className="rigth">
             {
               /* Controles de busqueda de cartas y cambio en la muestra de precios */
               rightControls
             }
 
-            <div className="cardContainer PM-internalPadding PM-outline1pxsolidblack">
+            <div className="cardContainer PM-internalPadding ">
               {productosFiltrados.length === 0 ? (
                 <p>No hay elementos para cargar.</p>
               ) : (
