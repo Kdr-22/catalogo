@@ -87,83 +87,58 @@ function App() {
   // //       );
   // //   };
 
-  const colectionSavedGroups = [
-    [
-      {
-        id: "ACC-001",
-        title: "Mini UPS DC",
-        colection: "accesorio",
-        valery_name: "Mini UPS 20000MaH",
-        description:
-          "• Capacidad: 20.000 mAh de alta duración. \n• Compatibilidad: Routers, Antenas POE, Cámaras de seguridad y dispositivos de red.\n• Salidas DC: 5V / 9V / 12V seleccionables.\n• Puerto POE: 15V / 24V para antenas y equipos específicos.\n• Indicadores: LEDs de estado de carga y encendido.\n",
-        availability: "in stock",
-        condition: "new",
-        price: 23,
-        link: "https://wa.me/584129230341?text=Hola%20Compucentro,%20me%20interesa%20el%20producto%20ID:%20ACC-001%20-%20Mini UPS DC",
-        image_link:
-          "https://raw.githubusercontent.com/KDR-2/compucentro-img/main/ACC-001.webp",
-        additional_image_link: "",
-        brand: "Olax",
-        google_product_category:
-          "Electronics > Networking > Network Hubs & Switches",
-        product_type: "Accesorios > Energía",
-        availability_circle_origin: "",
-      },
-      {
-        id: "ACC-002",
-        title: "Funda Protectora para Laptops",
-        colection: "accesorio",
-        valery_name: "Forro Laptop UP",
-        description:
-          'Funda Protectora U-products para Laptop 14"\n\nProtección esencial contra rayones, polvo y golpes leves. Diseño ligero y resistente.\n\n• Compatibilidad: Laptops y Tablets hasta 14 pulgadas. \n• Material: Neopreno / Tela acolchada de alta densidad. \n• Marca: U-products. \n• Uso: Ideal para morrales o transporte individual.\n\nOfrecemos precio al mayor disponible en divisas',
-        availability: "in stock",
-        condition: "new",
-        price: 7.5,
-        link: "https://wa.me/584129230341?text=Hola%20Compucentro,%20me%20interesa%20el%20producto%20ID:%20ACC-002%20-%20Funda Protectora para Laptops",
-        image_link:
-          "https://raw.githubusercontent.com/KDR-2/compucentro-img/main/ACC-002.webp",
-        additional_image_link: "",
-        brand: "U-products",
-        google_product_category:
-          "Electronics > Laptop Accessories > Laptop Cases",
-        product_type: "Accesorios > Protección",
-        availability_circle_origin: "",
-      },
-    ],
-    [],
-    [],
-    [],
-    [],
-  ];
+  // const colectionSavedGroups = ;
+
+  const [colectionSavedGroups, setColectionSavedGroups] = useState(() => {
+    const guardado = localStorage.getItem("Colecciones");
+    return guardado ? JSON.parse(guardado) : [[], [], [], [], []];
+  });
 
   const [colectionIndex, setColectionIndex] = useState(() => {
-    const savedIdenx = localStorage.getItem("CurrentActiveCollectionIndex");
-
-    return savedIdenx ? savedIdenx : 1;
+    let savedIdenx = localStorage.getItem("CurrentActiveCollectionIndex");
+    return savedIdenx ? savedIdenx : (savedIdenx = 1);
   });
 
   const [products, setProducts] = useState([]);
 
-  const [productsPin, setProductsPin] = useState(() => {
-    const guardados = localStorage.getItem("mis-pines");
-    return guardados ? JSON.parse(guardados) : [];
-  });
   const [busqueda, setBusqueda] = useState("");
-  const pinFunction = (nuevoProducto) => {
-    const yaExiste = productsPin.some(
-      (itemActual) => itemActual.id === nuevoProducto.id,
-    );
-    if (yaExiste) {
-      const nuevaLista = productsPin.filter(
-        (item) => item.id !== nuevoProducto.id,
-      );
-      setProductsPin(nuevaLista);
-      console.log("Eliminado de pines");
+
+  const pinearCard = (producto) => {
+    const indice = colectionIndex - 1; //Muestra el indice correctamente
+    const colectionCopy = colectionSavedGroups; // Muestra correctamente la copia del local storage
+
+    const existe = colectionCopy[indice].some((item) => item.id == producto.id);
+
+    if (existe) {
+      // const nuevalistafiltrada = colectionCopy[indice].filter(
+      //   (item) => item.id !== producto.id,
+      // );
+
+      const nuevalista = colectionCopy.map((p, index) => {
+        if (index === indice) {
+          const filtrado = p.filter((item) => item.id !== producto.id);
+          return filtrado;
+        } else {
+          return p;
+        }
+      });
+
+      setColectionSavedGroups(nuevalista);
     } else {
-      setProductsPin([...productsPin, nuevoProducto]);
-      console.log("Agregado a pines");
+      const nuevalista = colectionCopy.map((p, index) => {
+        if (index === indice) {
+          return [producto, ...p];
+        } else {
+          return p;
+        }
+      });
+      // colectionCopy[indice].unshift(producto);
+      // console.log(colectionCopy);
+
+      setColectionSavedGroups(nuevalista);
     }
   };
+
   const productosFiltrados = products.filter((p) =>
     p.valery_name.toLowerCase().includes(busqueda.toLowerCase()),
   );
@@ -190,8 +165,8 @@ function App() {
     })();
   }, []);
   useEffect(() => {
-    localStorage.setItem("Colecciones", JSON.stringify(productsPin));
-  }, [productsPin]);
+    localStorage.setItem("Colecciones", JSON.stringify(colectionSavedGroups));
+  }, [colectionSavedGroups]);
 
   const leftcontrols = (
     <div className="controls ">
@@ -242,6 +217,7 @@ function App() {
       </div>
     </div>
   );
+  // console.log(colectionSavedGroups);
   return (
     <main className="main">
       <div className="appContainer">
@@ -252,7 +228,7 @@ function App() {
           }
           <div className="pinElements">
             {colectionSavedGroups[colectionIndex - 1].map((p) => (
-              <ProductPIn key={p.id} {...p} pinFunction={pinFunction} />
+              <ProductPIn key={p.id} {...p} pinFunction={pinearCard} />
             ))}
           </div>
         </div>
@@ -270,15 +246,15 @@ function App() {
               ) : (
                 // Podemos pasar todos los props que queramos a un componente este los agrupara en un solo prop y podemos desestructurar para acceder a ellos
                 productosFiltrados.map((p) => {
-                  const isChecked = productsPin.some(
-                    (item) => item.id === p.id,
-                  );
+                  const isChecked = colectionSavedGroups[
+                    colectionIndex - 1
+                  ].some((item) => item.id === p.id);
 
                   return (
                     <ProductCard
                       key={p.id}
                       {...p}
-                      pinFunction={pinFunction}
+                      pinFunction={pinearCard}
                       active={isChecked}
                     />
                   );

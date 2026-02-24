@@ -10,6 +10,7 @@ export function ProductCard(props) {
     description,
     image_link,
     imgAltText,
+
     // copy,
   } = props;
   const descripcionFormateada = description
