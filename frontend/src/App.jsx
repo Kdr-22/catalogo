@@ -96,7 +96,7 @@ function App() {
 
   const [colectionIndex, setColectionIndex] = useState(() => {
     let savedIdenx = localStorage.getItem("CurrentActiveCollectionIndex");
-    return savedIdenx ? savedIdenx : (savedIdenx = 1);
+    return savedIdenx ? Number(savedIdenx) : (savedIdenx = 0);
   });
 
   const [products, setProducts] = useState([]);
@@ -104,7 +104,7 @@ function App() {
   const [busqueda, setBusqueda] = useState("");
 
   const pinearCard = (producto) => {
-    const indice = colectionIndex - 1; //Muestra el indice correctamente
+    const indice = colectionIndex; //Muestra el indice correctamente
     const colectionCopy = colectionSavedGroups; // Muestra correctamente la copia del local storage
 
     const existe = colectionCopy[indice].some((item) => item.id == producto.id);
@@ -147,9 +147,9 @@ function App() {
     const button = e.target.closest("button");
     localStorage.setItem(
       "CurrentActiveCollectionIndex",
-      Number(button.textContent),
+      button.textContent - 1,
     );
-    setColectionIndex(button.textContent);
+    setColectionIndex(button.textContent - 1);
   };
 
   useEffect(() => {
@@ -192,7 +192,7 @@ function App() {
             return (
               <CollectionButtons
                 key={indice}
-                activeIndex={colectionIndex}
+                activeIndex={colectionIndex + 1}
                 textContent={indice + 1}
               />
             );
@@ -227,7 +227,7 @@ function App() {
             leftcontrols
           }
           <div className="pinElements">
-            {colectionSavedGroups[colectionIndex - 1].map((p) => (
+            {colectionSavedGroups[colectionIndex].map((p) => (
               <ProductPIn key={p.id} {...p} pinFunction={pinearCard} />
             ))}
           </div>
@@ -246,9 +246,9 @@ function App() {
               ) : (
                 // Podemos pasar todos los props que queramos a un componente este los agrupara en un solo prop y podemos desestructurar para acceder a ellos
                 productosFiltrados.map((p) => {
-                  const isChecked = colectionSavedGroups[
-                    colectionIndex - 1
-                  ].some((item) => item.id === p.id);
+                  const isChecked = colectionSavedGroups[colectionIndex].some(
+                    (item) => item.id === p.id,
+                  );
 
                   return (
                     <ProductCard
