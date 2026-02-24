@@ -138,6 +138,14 @@ function App() {
       setColectionSavedGroups(nuevalista);
     }
   };
+  const DelPin = (indice) => {
+    const nuevaLista = colectionSavedGroups.map((p, index) => {
+      if (index === indice) {
+        return (p = []);
+      } else return p;
+    });
+    setColectionSavedGroups(nuevaLista);
+  };
 
   const productosFiltrados = products.filter((p) =>
     p.valery_name.toLowerCase().includes(busqueda.toLowerCase()),
@@ -173,7 +181,13 @@ function App() {
       <div className="leftTopControlls">
         <div className="leftTopControlls__inner leftTopControlls__inner--top">
           <button>Exportar grupo</button>
-          <button>Borrar todo</button>
+          <button
+            onClick={() => {
+              DelPin(colectionIndex);
+            }}
+          >
+            Borrar todo
+          </button>
         </div>
         <div className="leftTopControlls__inner leftTopControlls__inner--bot">
           {<CopyButtons />}
