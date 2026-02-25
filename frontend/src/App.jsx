@@ -190,7 +190,7 @@ function App() {
           </button>
         </div>
         <div className="leftTopControlls__inner leftTopControlls__inner--bot">
-          {<CopyButtons />}
+          {<CopyButtons elements={colectionSavedGroups[colectionIndex]} />}
         </div>
       </div>
       <div className="leftControlls__collections">

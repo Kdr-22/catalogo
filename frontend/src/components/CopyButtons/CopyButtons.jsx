@@ -1,27 +1,51 @@
 import "./CopyButtons.css";
 // Funciones para copiar la informaicon del producto y formatear el texto,
-export function CopyButtons({ valery_name, price, description }) {
-  const formatearPrecio = (price, target) => {
-    if (target.textContent === "$")
+export function CopyButtons({ valery_name, price, description, elements }) {
+  const tasa = 354.43;
+
+  const masterhanddle = (name, description, price, target, elements = null) => {
+    let textoACopiar = "";
+    if (elements) {
+      elements.forEach((p) => {
+        const texturisado = createText(
+          p.valery_name,
+          p.description,
+          priceFormat(p.price, target, tasa),
+        );
+        return (textoACopiar += texturisado);
+      });
+    } else {
+      const texto = createText(
+        name,
+        description,
+        priceFormat(price, target, tasa),
+      );
+      textoACopiar += texto;
+    }
+    clipboardFill(textoACopiar);
+  };
+
+  const priceFormat = (price, target, tasa) => {
+    const pressedbutton = target.textContent.toLowerCase();
+
+    if (pressedbutton === "$")
       return `El precio del producto es de $: ${price}`;
-    if (target.textContent === "Bs")
-      return `El precio del producto es de Bs: ${price * 50}`;
-    if (target.textContent === "All")
+    if (pressedbutton === "bs")
+      return `El precio del producto es de Bs: ${price * tasa}`;
+    if (pressedbutton === "all")
       return (
         `El precio del producto es de $: ${price}\n` +
-        `El precio del producto es de Bs: ${price * 50} `
-        // El numero de la tasa tiene que ser una variable, de momento vamos a dejarlo fijo en 50 para testing
+        `El precio del producto es de Bs: ${price * tasa} `
       );
   };
-  //  ‼️‼️Si el target apunta a algo entre los botonoes va a marcar undefined corregir
-  const copyPaper = (name, description, price, target) => {
-    const textoACopiar =
-      `${name}*\n` +
-      `${description}"}\n` +
-      `💵${formatearPrecio(price, target, 50)}\n`;
+  const createText = (name, description, price) => {
+    const textoACopiar = `${name}*\n` + `${description}"}\n` + `${price}\n`;
+    return textoACopiar;
+  };
 
+  const clipboardFill = (textoPreparado) => {
     navigator.clipboard
-      .writeText(textoACopiar)
+      .writeText(textoPreparado)
       .then(() => {
         console.log("texto copiado al portapales");
       })
@@ -32,7 +56,7 @@ export function CopyButtons({ valery_name, price, description }) {
   return (
     <div
       onClick={(e) => {
-        copyPaper(valery_name, description, price, e.target);
+        masterhanddle(valery_name, description, price, e.target, elements);
       }}
       className="CopyButtonsDiv"
     >
