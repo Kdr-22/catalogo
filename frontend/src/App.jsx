@@ -99,6 +99,17 @@ function App() {
     return savedIdenx ? Number(savedIdenx) : (savedIdenx = 0);
   });
 
+
+
+
+  
+  const [currency, setCurrency] = useState(() => {
+    const guardado = localStorage.getItem("currency");
+    return guardado ? JSON.parse(guardado) : 1;
+  });
+  const clickCurrency = (e) => {
+    setCurrency(e.target.value);
+  };
   const [products, setProducts] = useState([]);
 
   const [busqueda, setBusqueda] = useState("");
@@ -175,6 +186,9 @@ function App() {
   useEffect(() => {
     localStorage.setItem("Colecciones", JSON.stringify(colectionSavedGroups));
   }, [colectionSavedGroups]);
+  useEffect(() => {
+    localStorage.setItem("currency", JSON.stringify(currency));
+  }, [currency]);
 
   const leftcontrols = (
     <div className="controls ">
@@ -227,7 +241,17 @@ function App() {
         />
       </div>
       <div className="priceSelector PM-outline1pxsolidblack">
-        <p>Selector de $$ o Bs</p>
+        <select
+          onChange={(e) => {
+            clickCurrency(e);
+          }}
+          value={currency}
+          name="currency"
+          id="currency-select"
+        >
+          <option value="1">$</option>
+          <option value="2">Bs</option>
+        </select>
       </div>
     </div>
   );
