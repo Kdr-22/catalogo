@@ -5,8 +5,8 @@ import { ProductCard } from "./components/ProductCard/ProductCard";
 import { ProductPIn } from "./components/ProductPIn/ProductPin";
 import { CopyButtons } from "./components/CopyButtons/CopyButtons";
 import { CollectionButtons } from "./components/CollectionButtons/CollectionButtons";
-import { DATOS } from "./services/mokup";
-// import { getProducts } from './services/api'
+// import { DATOS } from "./services/mokup";
+import { getProducts } from "./services/api";
 
 function App() {
   //  // Socorro no entres aqui hay intentos Vanilla de crear la botonera de las colecciones
@@ -99,10 +99,6 @@ function App() {
     return savedIdenx ? Number(savedIdenx) : (savedIdenx = 0);
   });
 
-
-
-
-  
   const [currency, setCurrency] = useState(() => {
     const guardado = localStorage.getItem("currency");
     return guardado ? JSON.parse(guardado) : 1;
@@ -176,8 +172,8 @@ function App() {
     (async () => {
       try {
         // Las promesas deben ser esperadas "await" para que devuelvan un resultado que no sea "pending"
-        // const datos = await getProducts()
-        setProducts(DATOS);
+        const datos = await getProducts();
+        setProducts(datos);
       } catch (error) {
         console.error("Error al cargar los productos: ", error);
       }
