@@ -1,7 +1,7 @@
 import "./CopyButtons.css";
 // Funciones para copiar la informaicon del producto y formatear el texto,
 export function CopyButtons({ valery_name, price, description, elements }) {
-  const tasa = 354.43;
+  const tasa = 596.07;
 
   const masterhanddle = (name, description, price, target, elements = null) => {
     let textoACopiar = "";
@@ -12,7 +12,7 @@ export function CopyButtons({ valery_name, price, description, elements }) {
           p.description,
           priceFormat(p.price, target, tasa),
         );
-        return (textoACopiar += texturisado);
+        return (textoACopiar += texturisado + `\n`);
       });
     } else {
       const texto = createText(
@@ -29,17 +29,21 @@ export function CopyButtons({ valery_name, price, description, elements }) {
     const pressedbutton = target.textContent.toLowerCase();
 
     if (pressedbutton === "$")
-      return `El precio del producto es de $: ${price}`;
+      return `El precio del producto para pagos en divisas es: ${price.toFixed(2)} $`;
     if (pressedbutton === "bs")
-      return `El precio del producto es de Bs: ${price * tasa}`;
+      return `El precio del producto para transferencias bancarias en Bs es ${(price * tasa).toFixed(2)} Bs.`;
     if (pressedbutton === "all")
       return (
-        `El precio del producto es de $: ${price}\n` +
-        `El precio del producto es de Bs: ${price * tasa} `
+        `El precio del producto para pagos en divisas es: ${price.toFixed(2)} $ \n` +
+        `El precio del producto para transferencias bancarias en Bs es ${(price * tasa).toFixed(2)} Bs.`
       );
   };
   const createText = (name, description, price) => {
-    const textoACopiar = `${name}*\n` + `${description}"}\n` + `${price}\n`;
+    const textoACopiar =
+      `## ${name}\n` +
+      `${description}\n\n` +
+      `¿Qué método de pago estarías utilizando? Contamos con Zelle, pago móvil, Binance, transferencia electrónica y efectivo en divisas.\n\n` +
+      `${price}\n`;
     return textoACopiar;
   };
 
