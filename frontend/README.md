@@ -31,3 +31,5 @@ De momento catalogo este proyecto como: "Un catalogo interactivo" o un "Catalogo
 - Los elementos pineados no actualizan su informacion cuando se refresca la data obtenido del origen externo
 - No podemos crear productos compuestos
 - No hay facilidad de edicion de la descripcion de los productos, esta se debe hacer directamente sobre el google sheets
+
+![representacion del estado actual de la app](image.png)
