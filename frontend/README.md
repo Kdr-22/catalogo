@@ -1,16 +1,33 @@
-# React + Vite
+## Por qué del proyecto?
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Necesito una herramienta que me facilite la gestion de los precios y el compartir esta informacion de manera rápida con los clientes
+Creamos una interfaz mucho mas rápida y accesible que un block de notas o la informacion del sistema administrativo Valery
+De momento catalogo este proyecto como: "Un catalogo interactivo" o un "Catalogo con esteroides"
 
-Currently, two official plugins are available:
+## Requisitos de la app
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+[] mejorar agilidad para obtener la informacion y los precios actuales de los productos
+[] aumentar el tiempo de respuestas de solicitud de cotizacion
 
-## React Compiler
+## otros requisitos
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+[] crear productos compuestos para trabajar sobre la base del valery
+[] ordenar por secciones o colecciones los productos
 
-## Expanding the ESLint configuration
+## posibles mejoras a futuro
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+[] dividir la interfa del usuario final con la del administrador del negocio
+[] permitir la operabilidad via online
+
+## Funcionalidad y estado actual de la App
+
+- Nos conectamos a google sheets para hacer la carga de los productos con atributos como: ID, valery_name, description, price
+- El front muestra junto con un buscador simple las tarjetas que contienen la informacion del producto
+- sistema de colecciones que permite guardar conjuntos de productos para facilitar acceso
+
+## Cosas a mejorar
+
+- No se han añadido imagenes a los elementos
+- Los elementos pineados no actualizan su informacion cuando se refresca la data obtenido del origen externo
+- No podemos crear productos compuestos
+- No hay facilidad de edicion de la descripcion de los productos, esta se debe hacer directamente sobre el google sheets
