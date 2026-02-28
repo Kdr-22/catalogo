@@ -5,29 +5,7 @@
 GET {{url}}
 
 ###
-### Crear un nuevo producto
+### actualizar sheets con db
 POST {{url}}
-Content-Type: application/json
 
-{
-    "name": "Monitor 4K",
-    "description": "Pantalla de 27 pulgadas Ultra HD",
-    "price": 350.00,
-    "stock": 10
-}
 
-###
-### Actualizar un producto (Cambia el ID por un ID real)
-PUT {{url}}/3
-Content-Type: application/json
-
-{
-    "name": "Monitor 4K Pro",
-    "description": "Edición mejorada",
-    "price": 399.99,
-    "stock": 5
-}
-
-###
-### Eliminar un producto
-DELETE {{url}}/4
