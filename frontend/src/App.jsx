@@ -155,7 +155,7 @@ function App() {
   };
 
   const productosFiltrados = products.filter((p) =>
-    p.valery_name.toLowerCase().includes(busqueda.toLowerCase()),
+    p.name.toLowerCase().includes(busqueda.toLowerCase()),
   );
 
   const saveCurrentActiveIndex = (e) => {

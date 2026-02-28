@@ -1,7 +1,7 @@
 import "./ProductPin.css";
 import { CopyButtons } from "../CopyButtons/CopyButtons";
 export function ProductPIn(props) {
-  const { valery_name: name, price, pinFunction } = props;
+  const { name, price, pinFunction } = props;
   return (
     <div className="productPinned">
       <div className="productPinned__top productPinned__inner">

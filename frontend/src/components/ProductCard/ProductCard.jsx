@@ -5,7 +5,7 @@ export function ProductCard(props) {
     active,
     colection,
     pinFunction,
-    valery_name: name, // Puedes renombrar la variable que viene del prop por la de tu
+    name, // Puedes renombrar la variable que viene del prop por la de tu
     price,
     description,
     image_link,

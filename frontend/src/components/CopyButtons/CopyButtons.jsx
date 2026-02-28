@@ -1,6 +1,6 @@
 import "./CopyButtons.css";
 // Funciones para copiar la informaicon del producto y formatear el texto,
-export function CopyButtons({ valery_name, price, description, elements }) {
+export function CopyButtons({ name, price, description, elements }) {
   const tasa = 596.07;
 
   const masterhanddle = (name, description, price, target, elements = null) => {
@@ -8,7 +8,7 @@ export function CopyButtons({ valery_name, price, description, elements }) {
     if (elements) {
       elements.forEach((p) => {
         const texturisado = createText(
-          p.valery_name,
+          p.name,
           p.description,
           priceFormat(p.price, target, tasa),
         );
@@ -60,7 +60,7 @@ export function CopyButtons({ valery_name, price, description, elements }) {
   return (
     <div
       onClick={(e) => {
-        masterhanddle(valery_name, description, price, e.target, elements);
+        masterhanddle(name, description, price, e.target, elements);
       }}
       className="CopyButtonsDiv"
     >
