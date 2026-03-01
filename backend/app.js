@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const path = require("path");
 const productRoutes = require("./routes/products");
+const bundleRoutes = require("./routes/bundle");
 const morgan = require("morgan");
 
 const app = express();
@@ -22,5 +23,6 @@ app.use(morgan("dev"));
 
 // Rutas de la API
 app.use("/api/products", productRoutes);
+app.use("/api/bundle", bundleRoutes);
 
 module.exports = app;

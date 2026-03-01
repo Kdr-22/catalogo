@@ -6,11 +6,28 @@ const db = new sqlite3.Database("./database/catalog.db");
 
 // 1. Crear las tablas (Asegúrate de quitar la coma extra después de price)
 db.serialize(() => {
+  // 1. Tabla Espejo de Sheets (Lo que viene de Valery)
   db.run(`CREATE TABLE IF NOT EXISTS products_from_valery (
         id TEXT PRIMARY KEY, 
         name TEXT NOT NULL,
         description TEXT,
         price REAL
+  )`);
+
+  // 2. Tabla de "Cabecera" de Combos (El nombre del combo y su ID propio)
+  db.run(`CREATE TABLE IF NOT EXISTS bundles (
+        id TEXT PRIMARY KEY, -- Ej: 'COMBO-001'
+        name TEXT NOT NULL,
+        description TEXT,
+        fixed_price REAL -- Por si quieres darle un precio especial al combo
+  )`);
+
+  // 3. Tabla "Receta" (La que une un Combo con varios productos de Valery)
+  db.run(`CREATE TABLE IF NOT EXISTS bundle_items (
+        bundle_id TEXT,
+        product_id TEXT,
+        FOREIGN KEY(bundle_id) REFERENCES bundles(id),
+        FOREIGN KEY(product_id) REFERENCES products_from_valery(id)
   )`);
 });
 

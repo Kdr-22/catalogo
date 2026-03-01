@@ -8,6 +8,5 @@ const productsController = require("../controllers/products");
 // router.delete('/:id', productsController.delete);
 
 router.get("/", productsController.get);
-router.post("/", productsController.post);
-
+router.post("/sync", productsController.post);
 module.exports = router;
