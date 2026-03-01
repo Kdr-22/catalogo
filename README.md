@@ -21,7 +21,9 @@ De momento catalogo este proyecto como: "Un catalogo interactivo" o un "Catalogo
 
 ## Funcionalidad y estado actual de la App
 
-- Nos conectamos a google sheets para hacer la carga de los productos con atributos como: ID, valery_name, description, price
+<!-- - Nos conectamos a google sheets para hacer la carga de los productos con atributos como: ID, valery_name, description, price -->
+
+- Desde el Front realizamos una fetch a la DB que se conecta a el google sheets y extrae los datos principales: id, name, description, price
 - El front muestra junto con un buscador simple las tarjetas que contienen la informacion del producto
 - sistema de colecciones que permite guardar conjuntos de productos para facilitar acceso
 
@@ -29,7 +31,8 @@ De momento catalogo este proyecto como: "Un catalogo interactivo" o un "Catalogo
 
 - No se han añadido imagenes a los elementos
 - Los elementos pineados no actualizan su informacion cuando se refresca la data obtenido del origen externo
-- No podemos crear productos compuestos
+<!-- - No podemos crear productos compuestos -->
 - No hay facilidad de edicion de la descripcion de los productos, esta se debe hacer directamente sobre el google sheets
+- Agregar Lazy Load a los productos o limitar la cantidad que aparece al inicio
 
 ![representacion del estado actual de la app](image.png)
