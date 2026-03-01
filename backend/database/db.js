@@ -43,13 +43,19 @@ const syncWithSheets = async (sheetUrl) => {
     if (!Array.isArray(records)) {
       throw new Error("El formato no es una lista de productos");
     }
-    // C. Guardamos en la BD
-    db.serialize(() => {
-      // Limpiamos lo viejo para no duplicar
-      db.run("DELETE FROM products_from_valery");
 
+    await new Promise((resolve, reject) => {
+      db.run("DELETE FROM products_from_valery", (err) => {
+        if (err) reject(err);
+        else resolve();
+      });
+    });
+    // C. Guardamos en la BD
+    console.log("Tabla limpiada, iniciando inserción...");
+
+    db.serialize(() => {
       const insertStmt = db.prepare(`
-        INSERT INTO products_from_valery (id, name, description, price) 
+        INSERT OR REPLACE INTO products_from_valery (id, name, description, price) 
         VALUES (?, ?, ?, ?)
       `);
 
