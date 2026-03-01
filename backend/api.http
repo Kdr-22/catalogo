@@ -1,13 +1,34 @@
 ### Variables
 @url = http://localhost:3000/api/products
-
+@url2 = http://localhost:3000/api/bundle
 ### Obtener todos los productos
 GET {{url}}
 
 ###
 ### actualizar sheets con db
-POST {{url}}
+POST {{url}}/sync
 # Content-Type: application/json
+
+### Crear un nuevo Combo
+POST {{url2}}/create
+Content-Type: application/json
+
+{
+  "id": "A001",
+  "name": "Test 1",
+  "description": "testing again",
+  "fixed_price": 25.50,
+  "items": [
+    { "product_id": "0004"},
+    { "product_id": "0002"}
+  ]
+}
+
+### Recuperar lista de bundle_items
+GET {{url2}}
+
+### Recuperar lista de bundles
+GET {{url2}}/bundles
 
 # {
 #     "name": "Monitor 4K",
