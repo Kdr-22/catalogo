@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import "./reset.css";
 import "./App.css";
-import { ProductCard } from "./components/ProductCard/ProductCard";
+import { MainContent } from "./components/MainContent/MainContent";
 import { getProducts } from "./services/api";
 import { SideBar } from "./components/SideBar/SideBar";
 import { ProductGrid } from "./components/ProductGrid/ProductGrid";
@@ -187,17 +187,16 @@ function App() {
   // console.log(colectionSavedGroups);
   return (
     <main className="main">
-      <div className="appContainer">
-        <div className="appContainer__left ">
-          <SideBar
-            DelPin={DelPin}
-            colectionIndex={colectionIndex}
-            colectionSavedGroups={colectionSavedGroups}
-            saveCurrentActiveIndex={saveCurrentActiveIndex}
-            pinearCard={pinearCard}
-          />
-        </div>
-        <div className="appContainer__right">
+      <section className="appContainer">
+        <SideBar
+          DelPin={DelPin}
+          colectionIndex={colectionIndex}
+          colectionSavedGroups={colectionSavedGroups}
+          saveCurrentActiveIndex={saveCurrentActiveIndex}
+          pinearCard={pinearCard}
+        />
+
+        <MainContent>
           <RightControls
             busqueda={busqueda}
             setBusqueda={setBusqueda}
@@ -211,8 +210,8 @@ function App() {
             colectionIndex={colectionIndex}
             pinearCard={pinearCard}
           />
-        </div>
-      </div>
+        </MainContent>
+      </section>
     </main>
   );
 }

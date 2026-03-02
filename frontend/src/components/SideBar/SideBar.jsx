@@ -8,7 +8,7 @@ export function SideBar({
   pinearCard,
 }) {
   return (
-    <>
+    <div className="appContainer__left appContainer__SideBar ">
       <LeftControls
         DelPin={DelPin}
         colectionIndex={colectionIndex}
@@ -20,6 +20,6 @@ export function SideBar({
           <ProductPIn key={p.id} {...p} pinFunction={pinearCard} />
         ))}
       </div>
-    </>
+    </div>
   );
 }
