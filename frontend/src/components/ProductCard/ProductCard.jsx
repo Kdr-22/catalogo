@@ -1,3 +1,4 @@
+import React from "react";
 import "./ProductCard.css";
 import { CopyButtons } from "../CopyButtons/CopyButtons";
 export function ProductCard(props) {
@@ -62,7 +63,6 @@ export function ProductCard(props) {
     </div>
   );
 }
-
 // export function ProductCard(props){
 //     console.log(props);
 //     return (

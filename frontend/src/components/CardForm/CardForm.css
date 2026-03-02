@@ -1,0 +1,11 @@
+.productConfig {
+  width: 400px;
+  height: 400px;
+  position: fixed;
+  top: 50%;
+  right: 50%;
+  background: gray;
+  transform: translateX(-50%);
+  transform: translateY(-50%);
+  z-index: 10;
+}

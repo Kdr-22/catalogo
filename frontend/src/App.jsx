@@ -2,12 +2,10 @@ import { useEffect, useState } from "react";
 import "./reset.css";
 import "./App.css";
 import { ProductCard } from "./components/ProductCard/ProductCard";
-import { ProductPIn } from "./components/ProductPIn/ProductPin";
-import { CopyButtons } from "./components/CopyButtons/CopyButtons";
-import { CollectionButtons } from "./components/CollectionButtons/CollectionButtons";
-// import { DATOS } from "./services/mokup";
 import { getProducts } from "./services/api";
-
+import { SideBar } from "./components/SideBar/SideBar";
+import { ProductGrid } from "./components/ProductGrid/ProductGrid";
+import { RightControls } from "./components/RightControls/RightControls";
 function App() {
   //  // Socorro no entres aqui hay intentos Vanilla de crear la botonera de las colecciones
   // CollectionInfo tiene = Como primer elemento el numero de la seleccion activa en este momento y arreglos de objetos guardados en las colecciones
@@ -186,116 +184,33 @@ function App() {
     localStorage.setItem("currency", JSON.stringify(currency));
   }, [currency]);
 
-  const leftcontrols = (
-    <div className="controls ">
-      <div className="leftTopControlls">
-        <div className="leftTopControlls__inner leftTopControlls__inner--top">
-          <button>Exportar grupo</button>
-          <button
-            onClick={() => {
-              DelPin(colectionIndex);
-            }}
-          >
-            Borrar todo
-          </button>
-        </div>
-        <div className="leftTopControlls__inner leftTopControlls__inner--bot">
-          {<CopyButtons elements={colectionSavedGroups[colectionIndex]} />}
-        </div>
-      </div>
-      <div className="leftControlls__collections">
-        <p className="collections__text">Colecciones</p>
-
-        <div
-          onClick={(e) => {
-            saveCurrentActiveIndex(e);
-          }}
-          className="collections__buttons"
-        >
-          {colectionSavedGroups.map((p, indice) => {
-            return (
-              <CollectionButtons
-                key={indice}
-                activeIndex={colectionIndex + 1}
-                textContent={indice + 1}
-              />
-            );
-          })}
-        </div>
-      </div>
-    </div>
-  );
-  const rightControls = (
-    <div className="rigth__controls PM-internalPadding PM-outline1pxsolidblack">
-      <div className="productSearchDiv  PM-outline1pxsolidblack">
-        <input
-          className="productSearch"
-          type="text"
-          placeholder="Buscar producto..."
-          value={busqueda}
-          onChange={(e) => setBusqueda(e.target.value)}
-        />
-      </div>
-      <div className="priceSelector PM-outline1pxsolidblack">
-        <select
-          onChange={(e) => {
-            clickCurrency(e);
-          }}
-          value={currency}
-          name="currency"
-          id="currency-select"
-        >
-          <option value="1">$</option>
-          <option value="2">Bs</option>
-        </select>
-      </div>
-    </div>
-  );
   // console.log(colectionSavedGroups);
   return (
     <main className="main">
       <div className="appContainer">
         <div className="appContainer__left ">
-          {
-            /* controles para la gestion de elementos pineados  */
-            leftcontrols
-          }
-          <div className="pinElements">
-            {colectionSavedGroups[colectionIndex].map((p) => (
-              <ProductPIn key={p.id} {...p} pinFunction={pinearCard} />
-            ))}
-          </div>
+          <SideBar
+            DelPin={DelPin}
+            colectionIndex={colectionIndex}
+            colectionSavedGroups={colectionSavedGroups}
+            saveCurrentActiveIndex={saveCurrentActiveIndex}
+            pinearCard={pinearCard}
+          />
         </div>
-
         <div className="appContainer__right">
-          <div className="rigth">
-            {
-              /* Controles de busqueda de cartas y cambio en la muestra de precios */
-              rightControls
-            }
+          <RightControls
+            busqueda={busqueda}
+            setBusqueda={setBusqueda}
+            clickCurrency={clickCurrency}
+            currency={currency}
+          />
 
-            <div className="cardContainer PM-internalPadding ">
-              {productosFiltrados.length === 0 ? (
-                <p>No hay elementos para cargar.</p>
-              ) : (
-                // Podemos pasar todos los props que queramos a un componente este los agrupara en un solo prop y podemos desestructurar para acceder a ellos
-                productosFiltrados.map((p) => {
-                  const isChecked = colectionSavedGroups[colectionIndex].some(
-                    (item) => item.id === p.id,
-                  );
-
-                  return (
-                    <ProductCard
-                      key={p.id}
-                      {...p}
-                      pinFunction={pinearCard}
-                      active={isChecked}
-                    />
-                  );
-                })
-              )}
-            </div>
-          </div>
+          <ProductGrid
+            productosFiltrados={productosFiltrados}
+            colectionSavedGroups={colectionSavedGroups}
+            colectionIndex={colectionIndex}
+            pinearCard={pinearCard}
+          />
         </div>
       </div>
     </main>
