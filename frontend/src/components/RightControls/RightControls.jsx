@@ -1,3 +1,4 @@
+import "./RightControls.css";
 export function RightControls({
   busqueda,
   setBusqueda,
@@ -5,8 +6,8 @@ export function RightControls({
   currency,
 }) {
   return (
-    <div className="rigth__controls PM-internalPadding PM-outline1pxsolidblack">
-      <div className="productSearchDiv  PM-outline1pxsolidblack">
+    <div className="rigth__controls">
+      <div className="productSearchDiv  ">
         <input
           className="productSearch"
           type="text"
@@ -15,7 +16,7 @@ export function RightControls({
           onChange={(e) => setBusqueda(e.target.value)}
         />
       </div>
-      <div className="priceSelector PM-outline1pxsolidblack">
+      <div className="priceSelector ">
         <select
           onChange={(e) => {
             clickCurrency(e);

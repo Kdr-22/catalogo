@@ -1,5 +1,5 @@
 import { ProductCard } from "../ProductCard/ProductCard";
-
+import "./ProductGrid.css";
 export function ProductGrid({
   productosFiltrados,
   colectionSavedGroups,
@@ -7,7 +7,7 @@ export function ProductGrid({
   pinearCard,
 }) {
   return (
-    <div className="cardContainer PM-internalPadding ">
+    <div className="cardContainer">
       {productosFiltrados.length === 0 ? (
         <p>No hay elementos para cargar.</p>
       ) : (

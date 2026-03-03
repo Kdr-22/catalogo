@@ -1,7 +1,7 @@
 import "./CopyButtons.css";
 // Funciones para copiar la informaicon del producto y formatear el texto,
 export function CopyButtons({ name, price, description, elements }) {
-  const tasa = 596.07;
+  const tasa = 590.62;
 
   const masterhanddle = (name, description, price, target, elements = null) => {
     let textoACopiar = "";
@@ -41,8 +41,8 @@ export function CopyButtons({ name, price, description, elements }) {
   const createText = (name, description, price) => {
     const textoACopiar =
       `## ${name}\n` +
-      `${description}\n\n` +
-      `¿Qué método de pago estarías utilizando? Contamos con Zelle, pago móvil, Binance, transferencia electrónica y efectivo en divisas.\n\n` +
+      // `${description}\n\n` +
+      // `¿Qué método de pago estarías utilizando? Contamos con Zelle, pago móvil, Binance, transferencia electrónica y efectivo en divisas.\n\n` +
       `${price}\n`;
     return textoACopiar;
   };
