@@ -1,5 +1,6 @@
 import { LeftControls } from "../LeftControls/LeftControls";
 import { ProductPIn } from "../ProductPIn/ProductPin";
+import "./SideBar.css";
 export function SideBar({
   DelPin,
   colectionIndex,
@@ -8,7 +9,7 @@ export function SideBar({
   pinearCard,
 }) {
   return (
-    <div className="appContainer__left appContainer__SideBar ">
+    <div className="appContainer__SideBar ">
       <LeftControls
         DelPin={DelPin}
         colectionIndex={colectionIndex}

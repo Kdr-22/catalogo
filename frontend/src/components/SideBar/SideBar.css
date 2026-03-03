@@ -1,0 +1,8 @@
+.appContainer__SideBar {
+  width: 30%;
+  /* height: 100dvh; */
+  position: sticky;
+  top: 0;
+  background-color: rgba(103, 74, 122, 0.575);
+  border-radius: 0.3rem;
+}

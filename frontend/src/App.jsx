@@ -45,33 +45,44 @@ function App() {
   }, [currency]);
 
   return (
-    <main className="main">
-      <section className="appContainer">
-        <SideBar
-          DelPin={DelPin}
-          colectionIndex={activeIndex}
-          colectionSavedGroups={groups}
-          saveCurrentActiveIndex={saveCurrentActiveIndex}
-          pinearCard={addPin}
-        />
-
-        <MainContent>
-          <RightControls
-            busqueda={busqueda}
-            setBusqueda={setBusqueda}
-            clickCurrency={clickCurrency}
-            currency={currency}
-          />
-
-          <ProductGrid
-            productosFiltrados={productosFiltrados}
-            colectionSavedGroups={groups}
+    <div className="relative">
+      <div
+        className="absolute"
+        style={{
+          backgroundImage: `
+        radial-gradient(circle 600px at 0% 200px, #a99bf7, transparent),
+        radial-gradient(circle 600px at 100% 200px, #a99bf7, transparent)
+      `,
+        }}
+      />
+      <main className="main">
+        <section className="appContainer">
+          <SideBar
+            DelPin={DelPin}
             colectionIndex={activeIndex}
+            colectionSavedGroups={groups}
+            saveCurrentActiveIndex={saveCurrentActiveIndex}
             pinearCard={addPin}
           />
-        </MainContent>
-      </section>
-    </main>
+
+          <MainContent>
+            <RightControls
+              busqueda={busqueda}
+              setBusqueda={setBusqueda}
+              clickCurrency={clickCurrency}
+              currency={currency}
+            />
+
+            <ProductGrid
+              productosFiltrados={productosFiltrados}
+              colectionSavedGroups={groups}
+              colectionIndex={activeIndex}
+              pinearCard={addPin}
+            />
+          </MainContent>
+        </section>
+      </main>
+    </div>
   );
 }
 
