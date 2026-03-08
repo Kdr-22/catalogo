@@ -20,7 +20,7 @@ export function useCollections() {
     const indice = activeIndex; //Muestra el indice correctamente
     const colectionCopy = groups; // Muestra correctamente la copia del local storage
 
-    const existe = colectionCopy[indice].some((item) => item.id == producto.id);
+    const existe = colectionCopy[indice].some((item) => item == producto.id);
 
     if (existe) {
       // const nuevalistafiltrada = colectionCopy[indice].filter(
@@ -28,8 +28,10 @@ export function useCollections() {
       // );
 
       const nuevalista = colectionCopy.map((p, index) => {
+        //Creamos una nueva lista que va a mapear la copia
         if (index === indice) {
-          const filtrado = p.filter((item) => item.id !== producto.id);
+          // Si el indice es igual al indice selecionado por el usuario
+          const filtrado = p.filter((item) => item !== producto.id); //Va a filtrar de la lista "selecionada" el elemento que estamos quitando
           return filtrado;
         } else {
           return p;
@@ -38,9 +40,10 @@ export function useCollections() {
 
       setGroups(nuevalista);
     } else {
+      //Si no existe el elemento
       const nuevalista = colectionCopy.map((p, index) => {
         if (index === indice) {
-          return [producto, ...p];
+          return [producto.id, ...p];
         } else {
           return p;
         }

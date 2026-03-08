@@ -54,6 +54,7 @@ function App() {
           colectionSavedGroups={groups}
           saveCurrentActiveIndex={saveCurrentActiveIndex}
           pinearCard={addPin}
+          listalaverdad={products}
         />
 
         <MainContent>

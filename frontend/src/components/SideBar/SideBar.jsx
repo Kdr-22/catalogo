@@ -7,7 +7,11 @@ export function SideBar({
   colectionSavedGroups,
   saveCurrentActiveIndex,
   pinearCard,
+  listalaverdad,
 }) {
+  const listaARenderizar = listalaverdad.filter((item) =>
+    colectionSavedGroups[colectionIndex].includes(item.id),
+  );
   return (
     <div className="appContainer__SideBar  ">
       <LeftControls
@@ -17,7 +21,7 @@ export function SideBar({
         saveCurrentActiveIndex={saveCurrentActiveIndex}
       />
       <div className="pinElements">
-        {colectionSavedGroups[colectionIndex].map((p) => (
+        {listaARenderizar.map((p) => (
           <ProductPIn key={p.id} {...p} pinFunction={pinearCard} />
         ))}
       </div>
