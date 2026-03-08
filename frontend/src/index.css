@@ -1,0 +1,145 @@
+:root {
+  --border-color: rgba(160, 160, 160, 0.438);
+  --button-color: rgb(45, 45, 131);
+}
+
+.I_P1rem {
+  padding: 1rem;
+}
+
+.I_P2rem {
+  padding: 2rem;
+}
+.I_PB1Rem {
+  padding-bottom: 1rem;
+}
+.I_BB {
+  border-bottom: 1px solid var(--border-color);
+}
+/* From Uiverse.io by e-coders */
+button {
+  appearance: none;
+  background-color: #fafbfc;
+  border: 1px solid rgba(27, 31, 35, 0.15);
+  /* border-radius: 6px; */
+  box-shadow:
+    rgba(27, 31, 35, 0.04) 0 1px 0,
+    rgba(255, 255, 255, 0.25) 0 1px 0 inset;
+  box-sizing: border-box;
+  color: #24292e;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 1rem;
+  font-weight: 500;
+  /* line-height: 20px; */
+  list-style: none;
+  padding: 0.5rem 1rem;
+  position: relative;
+  transition: background-color 0.2s cubic-bezier(0.3, 0, 0.5, 1);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: middle;
+  white-space: nowrap;
+  word-wrap: break-word;
+}
+
+button:hover {
+  background-color: #f3f4f6;
+  text-decoration: none;
+  transition-duration: 0.1s;
+}
+
+button:disabled {
+  background-color: #fafbfc;
+  border-color: rgba(27, 31, 35, 0.15);
+  color: #959da5;
+  cursor: default;
+}
+
+button:active {
+  background-color: #edeff2;
+  box-shadow: rgba(225, 228, 232, 0.2) 0 1px 0 inset;
+  transition: none 0s;
+}
+
+button:focus {
+  outline: 1px transparent;
+}
+
+button:before {
+  display: none;
+}
+
+button:-webkit-details-marker {
+  display: none;
+}
+
+input[type="text"] {
+  background-color: #fafbfc;
+  border: 1px solid rgba(27, 31, 35, 0.15);
+  /* border-radius: 6px; */
+  box-shadow: rgba(27, 31, 35, 0.04) 0 1px 0 inset;
+  color: #24292e;
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  transition:
+    border-color 0.2s cubic-bezier(0.3, 0, 0.5, 1),
+    box-shadow 0.2s cubic-bezier(0.3, 0, 0.5, 1);
+  outline: none;
+}
+
+input[type="text"]:hover {
+  background-color: #ffffff;
+  border-color: rgba(27, 31, 35, 0.3);
+}
+
+/* El estado Focus es el más importante para que parezca profesional */
+input[type="text"]:focus {
+  background-color: #ffffff;
+  border-color: #33363a; /* Un azul suave tipo GitHub */
+  box-shadow: rgba(67, 72, 77, 0.3) 0 0 0 3px;
+  outline: none;
+}
+
+/* Estilo para el texto de ayuda */
+input[type="text"]::placeholder {
+  color: #959da5;
+}
+
+select {
+  appearance: none; /* Quita la flecha fea por defecto */
+  background-color: #fafbfc;
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath fill='none' stroke='%23959da5' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m3 5 3 3 3-3'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 12px;
+  border: 1px solid rgba(27, 31, 35, 0.15);
+  /* border-radius: 6px; */
+  box-shadow: rgba(27, 31, 35, 0.04) 0 1px 0 inset;
+  color: #24292e;
+  cursor: pointer;
+  font-size: 1rem;
+  padding: 0.5rem 36px 0.5rem 12px; /* Más espacio a la derecha para la flecha */
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s;
+  outline: none;
+}
+
+select:hover {
+  background-color: #f3f4f6;
+  border-color: rgba(27, 31, 35, 0.3);
+}
+
+select:focus {
+  background-color: #ffffff;
+  border-color: #0366d6;
+  box-shadow: rgba(3, 102, 214, 0.3) 0 0 0 3px;
+}
+
+/* Estilo para las opciones (limitado por el navegador) */
+option {
+  background-color: #ffffff;
+  color: #24292e;
+}

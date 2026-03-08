@@ -1,18 +1,38 @@
-.CopyButtonsDiv {
+.copyButtons {
   display: flex;
   gap: 0.5rem;
 }
-
-.CopyButtonsDiv__b {
-  min-width: 45px;
-  background-color: white;
-  border: 1px solid rgb(211, 206, 206);
-  transition: background-color 0.3s ease;
+.copyButtons--variant {
+  display: flex;
+  gap: 0.25rem; /* Espacio reducido entre botones */
 }
 
-.CopyButtonsDiv__b:hover {
-  background-color: rgb(88, 88, 88);
+/* El botón específico dentro del Pin */
+.copyButtons--variant .copyButtons__btn {
+  background-color: #ffffff;
+  border: 1px solid rgba(27, 31, 35, 0.15);
+  /* border-radius: 4px; Un poco más cuadrado para ser compacto */
+  color: #24292e;
+  cursor: pointer;
+  font-size: 11px; /* Fuente más pequeña */
+  font-weight: 500;
+  padding: 2px 8px; /* Padding reducido */
+  transition: all 0.1s ease;
+  height: 24px; /* Altura fija para consistencia */
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-.CopyButtonsDiv__b:active {
-  background-color: bisque;
+
+/* Estados para los botones del Pin */
+.copyButtons--variant .copyButtons__btn:hover {
+  background-color: #f3f4f6;
+  border-color: rgba(27, 31, 35, 0.3);
+  color: blue;
+  text-decoration: none;
+}
+
+.copyButtons--variant .copyButtons__btn:active {
+  background-color: #edeff2;
+  box-shadow: rgba(225, 228, 232, 0.2) 0 1px 0 inset;
 }

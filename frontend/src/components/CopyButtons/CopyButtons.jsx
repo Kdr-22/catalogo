@@ -1,7 +1,7 @@
 import "./CopyButtons.css";
 // Funciones para copiar la informaicon del producto y formatear el texto,
-export function CopyButtons({ name, price, description, elements }) {
-  const tasa = 590.62;
+export function CopyButtons({ name, price, description, elements, variant }) {
+  const tasa = 603.41;
 
   const masterhanddle = (name, description, price, target, elements = null) => {
     let textoACopiar = "";
@@ -41,8 +41,8 @@ export function CopyButtons({ name, price, description, elements }) {
   const createText = (name, description, price) => {
     const textoACopiar =
       `## ${name}\n` +
-      // `${description}\n\n` +
-      // `¿Qué método de pago estarías utilizando? Contamos con Zelle, pago móvil, Binance, transferencia electrónica y efectivo en divisas.\n\n` +
+      `${description}\n\n` +
+      `¿Qué método de pago estarías utilizando? Contamos con Zelle, pago móvil, Binance, transferencia electrónica y efectivo en divisas.\n\n` +
       `${price}\n`;
     return textoACopiar;
   };
@@ -57,16 +57,18 @@ export function CopyButtons({ name, price, description, elements }) {
         console.error("Error al copiar: ", err);
       });
   };
+
+  const modifiedClass = variant ? `copyButtons--${variant}` : "";
   return (
     <div
       onClick={(e) => {
         masterhanddle(name, description, price, e.target, elements);
       }}
-      className="CopyButtonsDiv"
+      className={`copyButtons ${modifiedClass}`}
     >
-      <button className="CopyButtonsDiv__b">$</button>
-      <button className="CopyButtonsDiv__b">Bs</button>
-      <button className="CopyButtonsDiv__b">All</button>
+      <button className="copyButtons__btn">$</button>
+      <button className="copyButtons__btn">Bs</button>
+      <button className="copyButtons__btn">All</button>
     </div>
   );
 }

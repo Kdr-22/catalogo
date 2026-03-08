@@ -27,13 +27,14 @@ export function ProductCard(props) {
       // console.log("click en un boton");
     }
   };
+  const imageolder = image_link ? image_link : `https://placehold.co/268x320`;
   return (
     <div
       onClick={(e) => handleclick(e)}
       className={`pCard ${active ? "pCard--active" : null}`}
     >
       <div className="pCard__divImg">
-        <img src={image_link} alt={imgAltText} />
+        <img src={imageolder} alt={imgAltText} />
       </div>
       <div className="pCard__show">
         <div className="pCard__mainView">

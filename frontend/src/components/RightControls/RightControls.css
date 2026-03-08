@@ -1,55 +1,18 @@
 .rigth__controls {
   display: flex;
+  position: sticky;
+  top: 0rem;
+  z-index: 2;
+  background-color: rgb(247, 247, 247);
+  border-bottom: 1px solid var(--border-color);
+  padding: 1rem;
 }
 .productSearchDiv {
   width: 70%;
   display: block;
   position: relative;
-  border: 1px solid var(--borde-color);
+
   transition:
     border 0.5s ease,
     box-shadow 0.5s ease;
-}
-.productSearchDiv:focus-within {
-  border: 1px solid transparent;
-}
-.productSearchDiv::after {
-  position: absolute;
-  content: "";
-  width: 100%;
-  height: 2px;
-  bottom: -1px;
-  left: 0;
-  background-color: rgba(3, 0, 0, 0.24);
-  transform: scaleX(0);
-  transform-origin: left;
-  opacity: 0;
-  transition:
-    transform 0.5s ease,
-    opacity 0.5s ease;
-}
-.productSearchDiv:focus-within {
-  box-shadow:
-    0 10px 15px -3px rgba(0, 0, 0, 0.1),
-    0 4px 6px -2px rgba(0, 0, 0, 0.05);
-}
-.productSearchDiv:focus-within::after {
-  transform: scaleX(1);
-  opacity: 1;
-}
-.productSearch {
-  display: block;
-  border-radius: 0;
-  height: 2rem;
-  width: 100%;
-  padding: 0.5rem;
-  border: none;
-  position: relative;
-}
-.productSearch::placeholder {
-  color: #777676;
-  font-style: italic;
-}
-.productSearch:focus {
-  outline: none;
 }
