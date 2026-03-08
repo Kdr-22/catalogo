@@ -11,8 +11,7 @@ export function ProductCard(props) {
     description,
     image_link,
     imgAltText,
-
-    // copy,
+    id,
   } = props;
   const descripcionFormateada = description
     ? description.replace(/\\n/g, "\n")
@@ -22,7 +21,7 @@ export function ProductCard(props) {
   const handleclick = (e) => {
     if (e.target.tagName !== "BUTTON") {
       // console.log("clien en el cuerpo de la tarjeta");
-      pinFunction(props);
+      pinFunction(id);
     } else {
       // console.log("click en un boton");
     }

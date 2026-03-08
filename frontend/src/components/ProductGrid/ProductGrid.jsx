@@ -1,5 +1,6 @@
-import { ProductCard } from "../ProductCard/ProductCard";
+import ProductCard from "../ProductCard/ProductCard";
 import "./ProductGrid.css";
+
 export function ProductGrid({
   productosFiltrados,
   colectionSavedGroups,
@@ -14,7 +15,7 @@ export function ProductGrid({
         // Podemos pasar todos los props que queramos a un componente este los agrupara en un solo prop y podemos desestructurar para acceder a ellos
         productosFiltrados.map((p) => {
           const isChecked = colectionSavedGroups[colectionIndex].some(
-            (item) => item.id === p.id,
+            (item) => item === p.id,
           );
 
           return (

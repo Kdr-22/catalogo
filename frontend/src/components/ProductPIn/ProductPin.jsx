@@ -1,7 +1,7 @@
 import "./ProductPin.css";
 import { CopyButtons } from "../CopyButtons/CopyButtons";
 export function ProductPIn(props) {
-  const { name, price, pinFunction } = props;
+  const { name, price, pinFunction, id } = props;
   return (
     <div className="productPinned">
       <div className="productPinned__imgDiv">
@@ -10,7 +10,7 @@ export function ProductPIn(props) {
       <div className="productPinned__elements">
         <div className="productPinned__top productPinned__inner">
           <p>{name}</p>
-          <button onClick={() => pinFunction(props)}>X</button>
+          <button onClick={() => pinFunction(id)}>X</button>
         </div>
         <div className="productPinned__bot productPinned__inner">
           <p>$ {price}</p>
