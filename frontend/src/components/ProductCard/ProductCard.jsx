@@ -1,7 +1,7 @@
-import React from "react";
+import { memo, useCallback } from "react";
 import "./ProductCard.css";
 import { CopyButtons } from "../CopyButtons/CopyButtons";
-export function ProductCard(props) {
+const ProductCard = memo((props) => {
   const {
     active,
     colection,
@@ -13,23 +13,28 @@ export function ProductCard(props) {
     imgAltText,
     id,
   } = props;
+  console.log(`Renderizando: ${name}`);
   const descripcionFormateada = description
     ? description.replace(/\\n/g, "\n")
     : "";
-
+  const onContainerClick = useCallback(
+    () => pinFunction(id),
+    [pinFunction, id],
+  );
+  // const onContainerClick = () => pinFunction(id);
   // Con esta funcion envitamos la propagacion del evento de click hacia el padre al presionar algun boton en la tarjeta
-  const handleclick = (e) => {
-    if (e.target.tagName !== "BUTTON") {
-      // console.log("clien en el cuerpo de la tarjeta");
-      pinFunction(id);
-    } else {
-      // console.log("click en un boton");
-    }
-  };
+  // const handleclick = (e) => {
+  //   if (e.target.tagName !== "BUTTON") {
+  //     // console.log("clien en el cuerpo de la tarjeta");
+  //     pinFunction(id);
+  //   } else {
+  //     // console.log("click en un boton");
+  //   }
+  // };
   const imageolder = image_link ? image_link : `https://placehold.co/268x320`;
   return (
     <div
-      onClick={(e) => handleclick(e)}
+      onClick={onContainerClick}
       className={`pCard ${active ? "pCard--active" : null}`}
     >
       <div className="pCard__divImg">
@@ -56,13 +61,15 @@ export function ProductCard(props) {
         </div>
         <div className="pCard__actionsInnerBot">
           <button>Gallery</button>
-          <CopyButtons {...props} />
+          <CopyButtons name={name} price={price} description={description} />
           {/* Averiguar si esta implementacion tiene repercucion en rendimiento */}
         </div>
       </div>
     </div>
   );
-}
+});
+
+export default ProductCard;
 // export function ProductCard(props){
 //     console.log(props);
 //     return (

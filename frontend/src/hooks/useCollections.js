@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 
 export function useCollections() {
   // Memoria
@@ -16,44 +16,82 @@ export function useCollections() {
     localStorage.setItem("Colecciones", JSON.stringify(groups));
   }, [groups]);
   //  Las funciones
-  const addPin = (id) => {
-    const indice = activeIndex; //Muestra el indice correctamente
-    const colectionCopy = groups; // Muestra correctamente la copia del local storage
 
-    const existe = colectionCopy[indice].some((item) => item == id);
+  const addPin = useCallback(
+    (id) => {
+      // Usamos el "patrón de actualización funcional" de setGroups
+      // para no tener que poner 'groups' en el arreglo de dependencias.
+      setGroups((prevGroups) => {
+        const existe = prevGroups[activeIndex].some((item) => item === id);
 
-    if (existe) {
-      // const nuevalistafiltrada = colectionCopy[indice].filter(
-      //   (item) => item.id !== producto.id,
-      // );
-
-      const nuevalista = colectionCopy.map((p, index) => {
-        //Creamos una nueva lista que va a mapear la copia
-        if (index === indice) {
-          // Si el indice es igual al indice selecionado por el usuario
-          const filtrado = p.filter((item) => item !== id); //Va a filtrar de la lista "selecionada" el elemento que estamos quitando
-          return filtrado;
-        } else {
+        return prevGroups.map((p, index) => {
+          if (index === activeIndex) {
+            return existe
+              ? p.filter((item) => item !== id) // Quitar
+              : [id, ...p]; // Agregar
+          }
           return p;
-        }
+        });
       });
 
-      setGroups(nuevalista);
-    } else {
-      //Si no existe el elemento
-      const nuevalista = colectionCopy.map((p, index) => {
-        if (index === indice) {
-          return [id, ...p];
-        } else {
-          return p;
-        }
-      });
-      // colectionCopy[indice].unshift(producto);
-      // console.log(colectionCopy);
+      // ¡OJO AQUÍ! activeIndex debe ir en el arreglo de dependencias
+    },
+    [activeIndex],
+  );
 
-      setGroups(nuevalista);
-    }
-  };
+  // const addPin = useCallback(
+  //   (id) => {
+  //     setGroups((prevGroups) => {
+  //       const existe = prevGroups[activeIndex].some((item) => item === id);
+  //       return prevGroups.map((p, index) => {
+  //         if (index === activeIndex) {
+  //           return existe
+  //             ? p.filter((item) => item !== id) // Quitar
+  //             : [id, ...p]; // Agregar
+  //         }
+  //         return p;
+  //       });
+  //     });
+  //     const indice = activeIndex; //Muestra el indice correctamente
+  //     const colectionCopy = groups; // Muestra correctamente la copia del local storage
+
+  //     const existe = colectionCopy[indice].some((item) => item == id);
+
+  //     if (existe) {
+  //       // const nuevalistafiltrada = colectionCopy[indice].filter(
+  //       //   (item) => item.id !== producto.id,
+  //       // );
+
+  //       const nuevalista = colectionCopy.map((p, index) => {
+  //         //Creamos una nueva lista que va a mapear la copia
+  //         if (index === indice) {
+  //           // Si el indice es igual al indice selecionado por el usuario
+  //           const filtrado = p.filter((item) => item !== id); //Va a filtrar de la lista "selecionada" el elemento que estamos quitando
+  //           return filtrado;
+  //         } else {
+  //           return p;
+  //         }
+  //       });
+
+  //       setGroups(nuevalista);
+  //     } else {
+  //       //Si no existe el elemento
+  //       const nuevalista = colectionCopy.map((p, index) => {
+  //         if (index === indice) {
+  //           return [id, ...p];
+  //         } else {
+  //           return p;
+  //         }
+  //       });
+  //       // colectionCopy[indice].unshift(producto);
+  //       // console.log(colectionCopy);
+
+  //       setGroups(nuevalista);
+  //     }
+  //   },
+  //   [activeIndex],
+  // );
+
   const DelPin = (indice) => {
     const nuevaLista = groups.map((p, index) => {
       if (index === indice) {
