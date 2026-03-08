@@ -15,11 +15,12 @@ function App() {
   const [products, setProducts] = useState([]);
 
   const [busqueda, setBusqueda] = useState("");
+  const [productosVisibles, setProductosVisibles] = useState(20);
 
   const productosFiltrados = products.filter((p) =>
     p.name.toLowerCase().includes(busqueda.toLowerCase()),
   );
-
+  const productosamostrar = productosFiltrados.slice(0, productosVisibles);
   const [currency, setCurrency] = useState(() => {
     const guardado = localStorage.getItem("currency");
     return guardado ? JSON.parse(guardado) : 1;
@@ -66,11 +67,16 @@ function App() {
           />
 
           <ProductGrid
-            productosFiltrados={productosFiltrados}
+            productosFiltrados={productosamostrar}
             colectionSavedGroups={groups}
             colectionIndex={activeIndex}
             pinearCard={addPin}
           />
+          {productosVisibles < productosFiltrados.length && (
+            <button onClick={() => setProductosVisibles((prev) => prev + 20)}>
+              Ver más productos
+            </button>
+          )}
         </MainContent>
       </section>
     </main>
